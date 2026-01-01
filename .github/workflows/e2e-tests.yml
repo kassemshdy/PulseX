@@ -92,6 +92,10 @@ jobs:
         working-directory: ./product/packages/database
         run: pnpm prisma generate
 
+      - name: Generate Prisma Client for E2E
+        working-directory: ./product/e2e
+        run: pnpm prisma:generate
+
       - name: Run database migrations
         working-directory: ./product/packages/database
         run: pnpm prisma migrate deploy

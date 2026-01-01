@@ -1,0 +1,80 @@
+/**
+ * Service helpers for E2E tests
+ * 
+ * These helpers use the actual services layer that the application uses,
+ * ensuring we test the real code paths.
+ */
+
+// Import from source files directly to avoid pnpm workspace issues
+import { AuthService } from '../../packages/services/src/auth/auth.service';
+import { TokenService } from '../../packages/services/src/auth/token.service';
+import { SubscriptionService } from '../../packages/services/src/subscription/subscription.service';
+import { prisma } from './database-helpers';
+
+// Initialize services (same way the app does)
+const tokenService = new TokenService(
+  process.env.JWT_ACCESS_SECRET || 'test-access-secret',
+  process.env.JWT_REFRESH_SECRET || 'test-refresh-secret'
+);
+const subscriptionService = new SubscriptionService();
+const authService = new AuthService(tokenService, subscriptionService);
+
+export { authService, subscriptionService, tokenService };
+
+/**
+ * Test helper: Create a test user using the actual signup service
+ * This tests the real signup flow that users experience
+ */
+export async function createTestUser(data: {
+  email: string;
+  password: string;
+  siteName: string;
+  subdomain: string;
+}) {
+  return await authService.signup(data);
+}
+
+/**
+ * Test helper: Check email availability using the actual service
+ */
+export async function checkEmailAvailability(email: string): Promise<boolean> {
+  return await authService.checkEmailAvailability(email);
+}
+
+/**
+ * Test helper: Check subdomain availability using the actual service
+ */
+export async function checkSubdomainAvailability(subdomain: string): Promise<boolean> {
+  const result = await subscriptionService.checkSubdomainAvailability(subdomain);
+  return result.available;
+}
+
+/**
+ * Test helper: Validate user credentials using the actual service
+ */
+export async function validateCredentials(email: string, password: string, subscriptionId: string) {
+  return await authService.validateCredentials(email, password, subscriptionId);
+}
+
+/**
+ * Verify that a user was created correctly in the database
+ * This uses direct Prisma access for verification only
+ */
+export async function verifyUserExists(email: string) {
+  return await prisma.user.findFirst({
+    where: { email },
+    include: { subscription: true },
+  });
+}
+
+/**
+ * Verify that a subscription was created correctly in the database
+ * This uses direct Prisma access for verification only
+ */
+export async function verifySubscriptionExists(subdomain: string) {
+  return await prisma.subscription.findUnique({
+    where: { code: subdomain },
+    include: { users: true },
+  });
+}
+

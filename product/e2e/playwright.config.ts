@@ -16,6 +16,10 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
+  // Set DATABASE_URL for all tests
+  env: {
+    DATABASE_URL: 'postgresql://cms_user:cms_password@localhost:5432/cms_db?schema=public',
+  },
   projects: [
     {
       name: 'chromium',

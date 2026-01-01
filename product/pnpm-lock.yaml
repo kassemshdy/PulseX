@@ -232,14 +232,14 @@ importers:
         specifier: workspace:*
         version: link:../shared
       '@prisma/client':
-        specifier: ^5.8.1
+        specifier: ^5.22.0
         version: 5.22.0(prisma@5.22.0)
     devDependencies:
       '@types/node':
         specifier: ^20.11.5
         version: 20.19.27
       prisma:
-        specifier: ^5.8.1
+        specifier: ^5.22.0
         version: 5.22.0
       tsx:
         specifier: ^4.7.0

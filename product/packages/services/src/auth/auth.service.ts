@@ -1,9 +1,18 @@
 import bcrypt from 'bcrypt';
 import { prisma, User, UserRole } from '@cms/database';
 import { ERROR_CODES, createApiError } from '@cms/shared';
+import { TokenService } from './token.service';
+import { SubscriptionService } from '../subscription/subscription.service';
 
 export class AuthService {
   private readonly saltRounds = 10;
+  private tokenService?: TokenService;
+  private subscriptionService?: SubscriptionService;
+
+  constructor(tokenService?: TokenService, subscriptionService?: SubscriptionService) {
+    this.tokenService = tokenService;
+    this.subscriptionService = subscriptionService;
+  }
 
   async validateCredentials(email: string, password: string, subscriptionId: string): Promise<User> {
     const user = await prisma.user.findUnique({
@@ -152,6 +161,7 @@ export class AuthService {
     subscription: any;
     accessToken: string;
     refreshToken: string;
+    redirectUrl: string;
   }> {
     const { email, password, siteName, subdomain } = data;
 
@@ -255,7 +265,7 @@ export class AuthService {
     });
 
     // Generate JWT tokens
-    const tokenService = new (require('./token.service').TokenService)();
+    const tokenService = this.tokenService || new TokenService();
     const accessToken = tokenService.generateAccessToken({
       userId: result.user.id,
       email: result.user.email,
@@ -273,6 +283,7 @@ export class AuthService {
       subscription: result.subscription,
       accessToken,
       refreshToken,
+      redirectUrl: `http://${result.subscription.code}.pulsex.com/admin`,
     };
   }
 }

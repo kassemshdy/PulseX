@@ -1,5 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 
+// Direct Prisma access should ONLY be used for:
+// 1. Test cleanup (deleting test data)
+// 2. Database verification (checking records exist)
+// 3. Test utilities that aren't part of normal application flow
+//
+// For actual application operations (signup, login, etc.), use services from @cms/services
 const prisma = new PrismaClient({
   datasourceUrl: 'postgresql://cms_user:cms_password@localhost:5432/cms_db?schema=public',
 });

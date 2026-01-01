@@ -16,12 +16,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@prisma/client": "^5.8.1",
+    "@prisma/client": "^5.22.0",
     "@cms/shared": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
-    "prisma": "^5.8.1",
+    "prisma": "^5.22.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },
