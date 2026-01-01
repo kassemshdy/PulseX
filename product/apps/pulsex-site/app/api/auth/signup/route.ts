@@ -7,14 +7,13 @@ const authService = new AuthService();
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, password, siteName, subdomain } = body;
+    const { email, password, siteName } = body;
 
-    // Use AuthService for signup
+    // Use AuthService for signup (subdomain will be auto-generated)
     const result = await authService.signup({
       email,
       password,
       siteName,
-      subdomain,
     });
 
     // Set httpOnly cookies for tokens
@@ -29,13 +28,9 @@ export async function POST(request: NextRequest) {
           lastName: result.user.lastName,
           role: result.user.role,
         },
-        subscription: {
-          id: result.subscription.id,
-          name: result.subscription.name,
-          code: result.subscription.code,
-          subdomain: `${result.subscription.code}.pulsex.com`,
-        },
-        redirectUrl: `http://${result.subscription.code}.pulsex.com/admin`,
+        redirectUrl: process.env.NODE_ENV === 'production' 
+          ? 'https://admin.pulsex.com' 
+          : 'http://localhost:3000',
       },
       { status: 201 }
     );

@@ -3,19 +3,16 @@ export const TEST_USERS = {
     email: 'e2e-test-user1@example.com',
     password: 'TestPass123!',
     siteName: 'E2E Test Site 1',
-    subdomain: 'e2e-test-site-1',
   },
   user2: {
     email: 'e2e-test-user2@example.com',
     password: 'TestPass456!',
     siteName: 'E2E Test Site 2',
-    subdomain: 'e2e-test-site-2',
   },
   user3: {
     email: 'e2e-test-user3@example.com',
     password: 'TestPass789!',
     siteName: 'E2E Test Site 3',
-    subdomain: 'e2e-test-site-3',
   },
 };
 

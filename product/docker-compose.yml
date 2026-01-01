@@ -1,4 +1,5 @@
-version: '3.8'
+# Infrastructure Services Only
+# Apps (pulsex-site, manager) run locally via pnpm dev
 
 services:
   # PostgreSQL Database
@@ -72,113 +73,8 @@ services:
         condition: service_healthy
     networks:
       - cms_network
-
-  # Admin API
-  admin-api:
-    build:
-      context: .
-      dockerfile: ./apps/admin-api/Dockerfile
-    container_name: cms-admin-api
-    environment:
-      NODE_ENV: development
-      PORT: 4000
-      DATABASE_URL: postgresql://cms_user:cms_password@postgres:5432/cms_db
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      ELASTICSEARCH_NODE: http://elasticsearch:9200
-      JWT_ACCESS_SECRET: dev-access-secret-change-in-production
-      JWT_REFRESH_SECRET: dev-refresh-secret-change-in-production
-    ports:
-      - '4000:4000'
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      elasticsearch:
-        condition: service_healthy
-    volumes:
-      - ./apps/admin-api:/app/apps/admin-api
-      - ./packages:/app/packages
-      - /app/node_modules
-      - /app/apps/admin-api/node_modules
-    networks:
-      - cms_network
-    command: pnpm dev
-
-  # Front API
-  front-api:
-    build:
-      context: .
-      dockerfile: ./apps/front-api/Dockerfile
-    container_name: cms-front-api
-    environment:
-      NODE_ENV: development
-      PORT: 4001
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      ELASTICSEARCH_NODE: http://elasticsearch:9200
-    ports:
-      - '4001:4001'
-    depends_on:
-      redis:
-        condition: service_healthy
-      elasticsearch:
-        condition: service_healthy
-    volumes:
-      - ./apps/front-api:/app/apps/front-api
-      - ./packages:/app/packages
-      - /app/node_modules
-      - /app/apps/front-api/node_modules
-    networks:
-      - cms_network
-    command: pnpm dev
-
-  # Admin UI
-  admin:
-    build:
-      context: .
-      dockerfile: ./apps/admin/Dockerfile
-    container_name: cms-admin
-    environment:
-      NODE_ENV: development
-      NEXT_PUBLIC_API_URL: http://localhost:4000
-    ports:
-      - '3000:3000'
-    depends_on:
-      - admin-api
-    volumes:
-      - ./apps/admin:/app/apps/admin
-      - ./packages:/app/packages
-      - /app/node_modules
-      - /app/apps/admin/node_modules
-      - /app/apps/admin/.next
-    networks:
-      - cms_network
-    command: pnpm dev
-
-  # Public Frontend
-  front:
-    build:
-      context: .
-      dockerfile: ./apps/front/Dockerfile
-    container_name: cms-front
-    environment:
-      NODE_ENV: development
-      NEXT_PUBLIC_API_URL: http://localhost:4001
-    ports:
-      - '3001:3001'
-    depends_on:
-      - front-api
-    volumes:
-      - ./apps/front:/app/apps/front
-      - ./packages:/app/packages
-      - /app/node_modules
-      - /app/apps/front/node_modules
-      - /app/apps/front/.next
-    networks:
-      - cms_network
-    command: pnpm dev
+    profiles:
+      - kibana  # Optional service, start with: docker-compose --profile kibana up
 
 volumes:
   postgres_data:

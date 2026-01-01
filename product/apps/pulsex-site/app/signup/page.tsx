@@ -11,7 +11,6 @@ export default function SignupPage() {
     email: '',
     password: '',
     siteName: '',
-    subdomain: '',
   });
 
   const [errors, setErrors] = useState<string[]>([]);
@@ -22,8 +21,6 @@ export default function SignupPage() {
   // Real-time validation states
   const [emailChecking, setEmailChecking] = useState(false);
   const [emailAvailable, setEmailAvailable] = useState<boolean | null>(null);
-  const [subdomainChecking, setSubdomainChecking] = useState(false);
-  const [subdomainAvailable, setSubdomainAvailable] = useState<boolean | null>(null);
 
   // Password strength
   const [passwordStrength, setPasswordStrength] = useState({
@@ -66,38 +63,6 @@ export default function SignupPage() {
     return () => clearTimeout(timer);
   }, [formData.email]);
 
-  // Check subdomain availability with debounce
-  useEffect(() => {
-    if (!formData.subdomain || formData.subdomain.length < 3) {
-      setSubdomainAvailable(null);
-      return;
-    }
-
-    const timer = setTimeout(async () => {
-      setSubdomainChecking(true);
-      try {
-        const response = await fetch(
-          `/api/auth/check-subdomain?subdomain=${encodeURIComponent(formData.subdomain)}`
-        );
-        const data = await response.json();
-        setSubdomainAvailable(data.available);
-        if (!data.available && data.error) {
-          setFieldErrors((prev) => ({ ...prev, subdomain: data.error }));
-        } else {
-          setFieldErrors((prev) => {
-            const { subdomain, ...rest } = prev;
-            return rest;
-          });
-        }
-      } catch (error) {
-        console.error('Subdomain check failed:', error);
-      } finally {
-        setSubdomainChecking(false);
-      }
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [formData.subdomain]);
 
   // Update password strength
   useEffect(() => {
@@ -109,18 +74,6 @@ export default function SignupPage() {
     });
   }, [formData.password]);
 
-  // Auto-generate subdomain from site name
-  useEffect(() => {
-    if (formData.siteName && !formData.subdomain) {
-      const generated = formData.siteName
-        .toLowerCase()
-        .replace(/[^a-z0-9-]/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '')
-        .slice(0, 20);
-      setFormData((prev) => ({ ...prev, subdomain: generated }));
-    }
-  }, [formData.siteName, formData.subdomain]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -156,9 +109,7 @@ export default function SignupPage() {
     formData.email &&
     formData.password &&
     formData.siteName &&
-    formData.subdomain &&
     emailAvailable === true &&
-    subdomainAvailable === true &&
     isPasswordStrong &&
     !loading;
 
@@ -232,10 +183,11 @@ export default function SignupPage() {
             {/* Site Name */}
             <div>
               <label htmlFor="siteName" className="block text-sm font-medium text-gray-700 mb-2">
-                Site Name
+                Website Name
               </label>
               <input
                 id="siteName"
+                name="siteName"
                 type="text"
                 required
                 value={formData.siteName}
@@ -246,46 +198,6 @@ export default function SignupPage() {
               <p className="mt-1 text-sm text-gray-500">
                 This will be displayed as your website name
               </p>
-            </div>
-
-            {/* Subdomain */}
-            <div>
-              <label htmlFor="subdomain" className="block text-sm font-medium text-gray-700 mb-2">
-                Choose Your Subdomain
-              </label>
-              <div className="flex items-center gap-2">
-                <div className="relative flex-1">
-                  <input
-                    id="subdomain"
-                    type="text"
-                    required
-                    value={formData.subdomain}
-                    onChange={(e) => setFormData({ ...formData, subdomain: e.target.value })}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary ${
-                      fieldErrors.subdomain ? 'border-red-300' : 'border-gray-300'
-                    }`}
-                    placeholder="mysite"
-                  />
-                  {subdomainChecking && (
-                    <Loader2 className="absolute right-3 top-3.5 w-5 h-5 text-gray-400 animate-spin" />
-                  )}
-                  {!subdomainChecking && subdomainAvailable === true && (
-                    <Check className="absolute right-3 top-3.5 w-5 h-5 text-green-600" />
-                  )}
-                  {!subdomainChecking && subdomainAvailable === false && (
-                    <X className="absolute right-3 top-3.5 w-5 h-5 text-red-600" />
-                  )}
-                </div>
-                <span className="text-gray-600 font-medium">.pulsex.com</span>
-              </div>
-              {fieldErrors.subdomain && (
-                <p className="mt-1 text-sm text-red-600">{fieldErrors.subdomain}</p>
-              )}
-              {subdomainAvailable && (
-                <p className="mt-1 text-sm text-green-600">
-                  ✓ {formData.subdomain}.pulsex.com is available!
-                </p>
-              )}
             </div>
 
             {/* Password */}
@@ -385,8 +297,8 @@ export default function SignupPage() {
             <div className="space-y-6">
               {[
                 {
-                  title: 'Free Subdomain',
-                  description: 'Get your own subdomain instantly. Upgrade to custom domain anytime.',
+                  title: 'Powerful Admin Panel',
+                  description: 'Manage all your content from a beautiful, intuitive dashboard.',
                 },
                 {
                   title: 'Visual Page Builder',

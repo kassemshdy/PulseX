@@ -155,7 +155,7 @@ export class AuthService {
     email: string;
     password: string;
     siteName: string;
-    subdomain: string;
+    subdomain?: string; // Optional - will be auto-generated if not provided
   }): Promise<{
     user: User;
     subscription: any;
@@ -163,7 +163,11 @@ export class AuthService {
     refreshToken: string;
     redirectUrl: string;
   }> {
-    const { email, password, siteName, subdomain } = data;
+    const { email, password, siteName } = data;
+    
+    // Auto-generate subdomain if not provided
+    const subdomain = data.subdomain || 
+      `${email.split('@')[0].replace(/[^a-z0-9]/g, '')}-${Date.now().toString(36)}`;
 
     // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -283,7 +287,9 @@ export class AuthService {
       subscription: result.subscription,
       accessToken,
       refreshToken,
-      redirectUrl: `http://${result.subscription.code}.pulsex.com/admin`,
+      redirectUrl: process.env.NODE_ENV === 'production' 
+        ? 'https://admin.pulsex.com' 
+        : 'http://localhost:3000',
     };
   }
 }
