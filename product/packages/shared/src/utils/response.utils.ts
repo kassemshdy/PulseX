@@ -1,4 +1,22 @@
-import { ApiResponse, ApiError, PaginationMeta } from '../types';
+import { ApiResponse, IApiError, PaginationMeta } from '../types';
+
+/**
+ * Custom Error class for API errors that can be thrown and caught
+ */
+export class ApiError extends Error implements IApiError {
+  constructor(
+    public code: string,
+    message: string,
+    public details?: Record<string, unknown>
+  ) {
+    super(message);
+    this.name = 'ApiError';
+    // Maintains proper stack trace for where our error was thrown (only available on V8)
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ApiError);
+    }
+  }
+}
 
 export function successResponse<T>(data: T, meta?: PaginationMeta): ApiResponse<T> {
   return {
@@ -8,7 +26,7 @@ export function successResponse<T>(data: T, meta?: PaginationMeta): ApiResponse<
   };
 }
 
-export function errorResponse(error: ApiError): ApiResponse {
+export function errorResponse(error: IApiError): ApiResponse {
   return {
     success: false,
     error,
@@ -33,10 +51,6 @@ export function createApiError(
   message: string,
   details?: Record<string, unknown>
 ): ApiError {
-  return {
-    code,
-    message,
-    ...(details && { details }),
-  };
+  return new ApiError(code, message, details);
 }
 

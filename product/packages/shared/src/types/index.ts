@@ -9,11 +9,11 @@ export interface PaginationMeta {
 export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
-  error?: ApiError;
+  error?: IApiError;
   meta?: PaginationMeta;
 }
 
-export interface ApiError {
+export interface IApiError {
   code: string;
   message: string;
   details?: Record<string, unknown>;

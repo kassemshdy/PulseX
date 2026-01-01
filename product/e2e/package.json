@@ -7,10 +7,10 @@
     "prisma:setup": "node scripts/setup-prisma.js",
     "postinstall": "pnpm prisma:generate && pnpm prisma:setup",
     "pretest": "pnpm prisma:setup",
-    "test": "playwright test",
-    "test:headed": "playwright test --headed",
-    "test:debug": "playwright test --debug",
-    "test:ui": "playwright test --ui",
+    "test": "DATABASE_URL='postgresql://cms_user:cms_password@localhost:5432/cms_db?schema=public' playwright test",
+    "test:headed": "DATABASE_URL='postgresql://cms_user:cms_password@localhost:5432/cms_db?schema=public' playwright test --headed",
+    "test:debug": "DATABASE_URL='postgresql://cms_user:cms_password@localhost:5432/cms_db?schema=public' playwright test --debug",
+    "test:ui": "DATABASE_URL='postgresql://cms_user:cms_password@localhost:5432/cms_db?schema=public' playwright test --ui",
     "report": "playwright show-report"
   },
   "devDependencies": {

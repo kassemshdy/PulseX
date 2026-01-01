@@ -67,8 +67,10 @@ export async function checkDatabaseConnection(): Promise<boolean> {
 
 export async function getTableCount(tableName: string): Promise<number> {
   try {
+    // Convert to lowercase as Prisma maps models to lowercase table names
+    const lowerTableName = tableName.toLowerCase();
     const result = await prisma.$queryRawUnsafe<Array<{ count: bigint }>>(
-      `SELECT COUNT(*) as count FROM "${tableName}"`
+      `SELECT COUNT(*) as count FROM ${lowerTableName}`
     );
     return Number(result[0].count);
   } catch (error) {

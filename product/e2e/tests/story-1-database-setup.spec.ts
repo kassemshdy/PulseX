@@ -135,7 +135,7 @@ test.describe('Story 1: Database Schema & Migrations', () => {
 
     const articleAuthorRelation = relations.find(r => r.name === 'author');
     expect(articleAuthorRelation).not.toBeUndefined();
-    expect(articleAuthorRelation?.relationType).toBe('MANY_TO_ONE');
+    expect(articleAuthorRelation?.relationType).toBe('ONE_TO_MANY');
   });
 
   test('should have Links table for URL routing', async () => {

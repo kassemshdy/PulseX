@@ -10,9 +10,11 @@ function hashPassword(password: string): string {
 async function main() {
   console.log('🌱 Starting database seed...');
 
-  // Create master subscription
-  const subscription = await prisma.subscription.create({
-    data: {
+  // Create or get master subscription
+  const subscription = await prisma.subscription.upsert({
+    where: { code: 'master' },
+    update: {},
+    create: {
       code: 'master',
       name: 'Master Subscription',
       hosts: ['localhost:3000', 'localhost:3001'],
@@ -21,23 +23,30 @@ async function main() {
     },
   });
 
-  console.log('✅ Created master subscription');
+  console.log('✅ Created/found master subscription');
 
-  // Create admin user
-  const adminUser = await prisma.user.create({
-    data: {
+  // Create or get admin user
+  const adminUser = await prisma.user.upsert({
+    where: { 
+      email_subscriptionId: {
+        email: 'admin@pulsex.com',
+        subscriptionId: subscription.id,
+      }
+    },
+    update: {},
+    create: {
       firstName: 'Admin',
       lastName: 'User',
-      email: 'admin@example.com',
+      email: 'admin@pulsex.com',
       passwordHash: hashPassword('admin123456'),
-      role: UserRole.SUPER_ADMIN,
+      role: UserRole.ADMIN,
       language: 'en',
       isActive: true,
       subscriptionId: subscription.id,
     },
   });
 
-  console.log('✅ Created admin user (admin@example.com / admin123456)');
+  console.log('✅ Created/found admin user (admin@pulsex.com / admin123456)');
 
   // Create Article post type
   const articlePostType = await prisma.postType.create({
