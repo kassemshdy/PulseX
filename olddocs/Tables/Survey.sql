@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[Survey] (
+    [Id]                 UNIQUEIDENTIFIER NOT NULL,
+    [PublicId]           INT              IDENTITY (1, 1) NOT NULL,
+    [CreationDate]       DATETIME         NOT NULL,
+    [LastModified]       DATETIME         NULL,
+    [Status]             INT              CONSTRAINT [DF_Survey_Status] DEFAULT ((10)) NOT NULL,
+    [Title]              NVARCHAR (MAX)   NOT NULL,
+    [StartDate]          DATETIME         NULL,
+    [EndDate]            DATETIME         NULL,
+    [Image]              NVARCHAR (MAX)   NULL,
+    [Platform]           NVARCHAR (250)   NULL,
+    [SubscriptionId]     UNIQUEIDENTIFIER NOT NULL,
+    [Description]        NVARCHAR (MAX)   NULL,
+    [Options]            NVARCHAR (MAX)   NULL,
+    [Url]                NVARCHAR (MAX)   NULL,
+    [Privacy]            NVARCHAR (50)    NULL,
+    [Style]              NVARCHAR (50)    NULL,
+    [MaxVotesPerSession] INT              NULL,
+    [AcceptPolicy]       BIT              NULL,
+    [SurveyDate]         DATETIME         NULL,
+    [SurveyGroup]        NVARCHAR (50)    NULL,
+    CONSTRAINT [PK_Survey] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Survey_Subscription] FOREIGN KEY ([SubscriptionId]) REFERENCES [dbo].[Subscription] ([Id])
+);
+

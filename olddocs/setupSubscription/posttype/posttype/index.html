@@ -1,0 +1,2657 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Post Type - MangoPulse CMS Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#post-type" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MangoPulse CMS Docs" class="md-header__button md-logo" aria-label="MangoPulse CMS Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MangoPulse CMS Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Post Type
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../userGuide/post/definition/" class="md-tabs__link">
+        CMS Guide
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../admin/admin/" class="md-tabs__link md-tabs__link--active">
+        New Subscription
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../systemArchitecture/architecture/" class="md-tabs__link">
+        System Architecture
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../modules/podcast/podcast/" class="md-tabs__link">
+        Modules
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MangoPulse CMS Docs" class="md-nav__button md-logo" aria-label="MangoPulse CMS Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MangoPulse CMS Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          CMS Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CMS Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          CMS Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1_1" type="checkbox" id="__nav_1_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1_1">
+          Post
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Post" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          Post
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/post/definition/" class="md-nav__link">
+        Definition
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/post/create/" class="md-nav__link">
+        Create and Edit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/post/publish/" class="md-nav__link">
+        Publish
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/post/history/" class="md-nav__link">
+        History
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/post/relative/" class="md-nav__link">
+        Relative
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/post/category/" class="md-nav__link">
+        Category and Tag
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1_2">
+          Media
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Media" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Media
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/media/image/" class="md-nav__link">
+        Image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/media/audioAndVideo/" class="md-nav__link">
+        Video and Audio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/media/archive/" class="md-nav__link">
+        Archive
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/search/search/" class="md-nav__link">
+        Search
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/publisher/publisher/" class="md-nav__link">
+        Publisher
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/slider/slider/" class="md-nav__link">
+        Slider
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/terms/terms/" class="md-nav__link">
+        Terms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1_7" type="checkbox" id="__nav_1_7" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1_7">
+          Notifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Notifications" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_7">
+          <span class="md-nav__icon md-icon"></span>
+          Notifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/notifications/notifications/" class="md-nav__link">
+        Notifications Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../userGuide/notifications/pushNotification/" class="md-nav__link">
+        Push Notification
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          New Subscription
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="New Subscription" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          New Subscription
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../admin/admin/" class="md-nav__link">
+        Admin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/community/" class="md-nav__link">
+        Community
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/contentHub/" class="md-nav__link">
+        Content Hub
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Post Type
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Post Type
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#meta-data" class="md-nav__link">
+    Meta Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#media" class="md-nav__link">
+    Media
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relations" class="md-nav__link">
+    Relations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terms" class="md-nav__link">
+    Terms
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics" class="md-nav__link">
+    Analytics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    Settings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#form" class="md-nav__link">
+    Form
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Taxonomy and Term
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Taxonomy and Term" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Taxonomy and Term
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../taxonomy/taxonomy/" class="md-nav__link">
+        Taxonomy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../taxonomy/term/" class="md-nav__link">
+        Term
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_6">
+          Pages
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pages" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Pages
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pagesAndTemplates/pages/" class="md-nav__link">
+        Pages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pagesAndTemplates/templates/" class="md-nav__link">
+        Templates
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pagesAndTemplates/pages-templates-Design/" class="md-nav__link">
+        Pages and Templates Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pagesAndTemplates/widget/" class="md-nav__link">
+        Widget Details
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_7" type="checkbox" id="__nav_2_7" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_7">
+          Menu
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Menu" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Menu
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../menu/menu/" class="md-nav__link">
+        Menus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../menu/menuWebsite/" class="md-nav__link">
+        Website Menu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../menu/menuAdmin/" class="md-nav__link">
+        Admin Menu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../menu/menuMobile/" class="md-nav__link">
+        Mobile Menu
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          System Architecture
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Architecture" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          System Architecture
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/api/" class="md-nav__link">
+        API (1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/website/" class="md-nav__link">
+        Website (2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/links/" class="md-nav__link">
+        Links (3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/track/" class="md-nav__link">
+        Track (3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/engage/" class="md-nav__link">
+        Engage (3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/azureCdn/" class="md-nav__link">
+        Azure CDN (4)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/mediaServer/" class="md-nav__link">
+        Media Server (5)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/searchServer/" class="md-nav__link">
+        Search Server (6)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/sqlDatabase/" class="md-nav__link">
+        SQL Database (7)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/mediaAzureBlobStorage/" class="md-nav__link">
+        Media Blob Storage (8)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/cms/" class="md-nav__link">
+        CMS (9)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/social/" class="md-nav__link">
+        Social (10)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/cmsApi/" class="md-nav__link">
+        CMS API (11)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/upload/" class="md-nav__link">
+        Upload (12)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/sitemapAppService/" class="md-nav__link">
+        Sitemap Service (13)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../systemArchitecture/sitemapAzureFunction/" class="md-nav__link">
+        Sitemap Function (14)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Modules
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Modules" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Podcast
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Podcast" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Podcast
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/podcast/podcast/" class="md-nav__link">
+        Podcast Management
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          CMS API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CMS API" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          CMS API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/cmsApi/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/cmsApi/authenticationApi/" class="md-nav__link">
+        Authentication API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/cmsApi/AdminPostFieldsApi/" class="md-nav__link">
+        Post Fields API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/cmsApi/mediaUploadApi/" class="md-nav__link">
+        Media Upload API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/cmsApi/postCreateApi/" class="md-nav__link">
+        Post Create API
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Elastic Search
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Elastic Search" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Elastic Search
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/elasticSearch/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/elasticSearch/indexing/" class="md-nav__link">
+        Indexing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Mobile API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Mobile API" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Mobile API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/mobileApi/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/mobileApi/menu/" class="md-nav__link">
+        Menu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/mobileApi/article/" class="md-nav__link">
+        Page/Article Details
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/mobileApi/api/" class="md-nav__link">
+        API Calls
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/mobileApi/tracking/" class="md-nav__link">
+        Tracking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/mobileApi/widgets/" class="md-nav__link">
+        Widgets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/mobileApi/communityApi/" class="md-nav__link">
+        Community API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/mobileApi/searchApi/" class="md-nav__link">
+        Search API
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/alItihad-api/" class="md-nav__link">
+        Al Ittihad API
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#meta-data" class="md-nav__link">
+    Meta Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#media" class="md-nav__link">
+    Media
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relations" class="md-nav__link">
+    Relations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terms" class="md-nav__link">
+    Terms
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics" class="md-nav__link">
+    Analytics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    Settings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#form" class="md-nav__link">
+    Form
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="post-type">Post Type</h1>
+<p>You can reach "Post Types" page from "tools and setup"
+<a href="../../../assets/images/setupSubscription/posttypes/posttypes.png" target="_blank"> <img alt="posttypes" src="../../../assets/images/setupSubscription/posttypes/posttypes.png" /> </a></p>
+<p>Configuring a post type indicates the template which will be used by posts of this type. The post type page consists of
+the following tabs:</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_tabs.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_tabs.png" /> </a></p>
+<h2 id="general">General</h2>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_General.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_General.png" /> </a></p>
+<ul>
+<li>Title: The title for the post type displayed on the Admin panel, e.g. مقالات</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttype_Title.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttype_Title.png" /> </a></p>
+<ul>
+<li>Code: The unique code for the post type used in the URLs to identify the current post type.</li>
+<li>Child: Used to assign a child for the post type example (Article and Parts), [it's used also in Post Search (GetChildren: true) with a Role ‘child’ and filled in post SubPosts], e.g. the episode post type can be added as a child for the show post type.</li>
+<li>Custom Javascript: The script to be executed on the post form related events, e.g. to prevent saving an empty summary for a post write a script that fills it from content if empty.</li>
+<li>Image: The image of the post type used in the Admin panel.</li>
+</ul>
+<h2 id="meta-data">Meta Data</h2>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_Meta.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_Meta.png" /> </a></p>
+<ul>
+<li>Key: The key used for getting this metadata in the code., e.g. photographer. This is used to distinguish between meta when displaying them on the front.</li>
+<li>Display: The title that appears in the post form, e.g. المصور.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_FieldTypes.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_FieldTypes.png" /> </a></p>
+<ul>
+<li>FieldType: The type of the data (Ex: text, list, …).<ul>
+<li>Text: It displays the input in the form of text.</li>
+</ul>
+</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_Text.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_Text.png" /> </a> </p>
+<ul>
+<li>TextArea:  It displayed a text area for multiline text.</li>
+</ul>
+<p><a href="../../assets/images/setupSubscription/posttypes/FieldType_TeFieldType_TextAreaxt.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_TextArea.png" /> </a> </p>
+<ul>
+<li>Editor: It displayed a tinymce HTML editor.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_Editor.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_Editor.png" /> </a></p>
+<ul>
+<li>CheckBox:  It displayed a checkbox. </li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_CheckBox.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_CheckBox.png" /> </a> </p>
+<ul>
+<li>Map: It displays a geographic map.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_Map.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_Map.png" /> </a> </p>
+<ul>
+<li>Date: It displays a date picker.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_Date.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_Date.png" /> </a> </p>
+<ul>
+<li>DateTime:  It displays a datetime picker.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_DateTime.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_DateTime.png" /> </a> </p>
+<ul>
+<li>TimeSpan: A timespan describes an interval within the item.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_TimeSpan.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_TimeSpan.png" /> </a> qaaq</p>
+<ul>
+<li>YearPicker: It displays a year picker.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_YearPicker.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_YearPicker.png" /> </a> </p>
+<ul>
+<li>DayPicker: It displays a day picker.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_DayPicker.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_DayPicker.png" /> </a></p>
+<ul>
+<li>DayName: It displays a day picker.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_DayName.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_DayName.png" /> </a></p>
+<ul>
+<li>MonthPicker: It displays a month picker.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_MonthPicker.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_MonthPicker.png" /> </a></p>
+<ul>
+<li>List: It will check the Data source prop<ul>
+<li>if it contains “,”  it will show the comma separated data (item1,item2,item3…)</li>
+<li>It is a “|” separated field like (source|Name)  it will fetch the list of terms for a Taxonomy named “source”</li>
+</ul>
+</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_List.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_List.png" /> </a></p>
+<ul>
+<li><span style="color:red;font  * weight:700;font  * size:20px"> Enum: </span> It displays Items from the enum defined in DataSource, Enum are hard coded</li>
+<li>Color: It displays a color picker. The displayed colors are implemented in the StyleConfig class. They are listed in the AvailableColorsinput field.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/StyleConfig.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/StyleConfig.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/StyleConfig_AvailableColors.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/StyleConfig_AvailableColors.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_Color.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_Color.png" /> </a></p>
+<ul>
+<li>Hidden: not accessible to view.</li>
+<li><span style="color:red;font  * weight:700;font  * size:20px"> MangomoloAudioCategory: </span> It fetches categories from Mangomolo audio categories API</li>
+<li>MangomoloVideoCategory: It fetches categories from Mangomolo video categories API</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/FieldType_mangomolovideocategory.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/FieldType_mangomolovideocategory.png" /> </a></p>
+<ul>
+<li>Required: If enabled, it's mandatory in the post form (true/false).</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/MetaData_Required.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/MetaData_Required.png" /> </a></p>
+<ul>
+<li>Icon: meta icon</li>
+<li>Order: Data order appearance in the post form.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttype_Order.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttype_Order.png" /> </a></p>
+<ul>
+<li>DataSource:<ul>
+<li>If it contains “,”</li>
+<li>It is a “|” separated field like (source|Name)  it will fetch the list of terms for a Taxonomy named “source”. Only used when type is list (comma separated).</li>
+</ul>
+</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_DataSource.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_DataSource.png" /> </a></p>
+<ul>
+<li>
+<p>Default: Used if FieldType is "date"  or FieldType is "datetime”, if it is "[NOW]” it will be calculated and filled in code. If this meta is not filled, this value will be saved upon saving a post.</p>
+</li>
+<li>
+<p><span style="color:red;font  * weight:700;font  * size:20px"> Role: </span> The data role (e.g. display: in case we need to display this meta on the website, link, icon, Youtube, Map). </p>
+</li>
+<li>
+<p>Public: if true, this can be shown on the website.</p>
+</li>
+<li>
+<p>ShowInList: if enabled,the meta is displayed as a column in the posts table in the admin panel.</p>
+</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttype_ShowInList.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttype_ShowInList.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/ShowInList_Column.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/ShowInList_Column.png" /> </a></p>
+<ul>
+<li>HiddenInitially: If enabled, the field will be hidden in the form until added.</li>
+</ul>
+<h2 id="media">Media</h2>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media.png" /> </a></p>
+<ul>
+<li>Compress: If enabled, media will be compressed.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Compress.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Compress.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_Compress.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_Compress.png" /> </a></p>
+<ul>
+<li>Count: Number of media allowed 0,1,2....n or   * 1 if infinity, e.g. if the count for المحتوى is 3, it allows the user to add only three items for the selected type "Video".</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_Count.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_Count.png" /> </a></p>
+<p>After adding two videos, UploadVideo option is still available because count is set to 3 so one more video can be added.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_CountUploadVideo.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_CountUploadVideo.png" /> </a></p>
+<p>After adding the third video, UploadVideo option is no longer available.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_CountExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_CountExample.png" /> </a></p>
+<ul>
+<li>Placement: The term used for handling media items in the code, e.g. cover, main, editor or gallery. It’s possible to create any new placement, that way you need to handle it in the code.<ul>
+<li>cover: Once added, can be found under the details tab in post creation form. It’s usually used as a cover image in listing widgets, however it can be used in the post detail page as well.</li>
+<li>main: Once added, can be found under the details tab in post creation form. It’s usually used in the post detail page.</li>
+<li>gallery: usually used as a gallery on the front. It’s located under the post gallery tab.</li>
+<li>editor: added in case the post type has an editor.</li>
+</ul>
+</li>
+<li>Title: hint in the form, e.g. صورة الغلاف.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_Title.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_Title.png" /> </a></p>
+<p><a href="../../assets/images/setupSubscription/posttypes/Media_TitleExamplea_Title.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_TitleExample.png" /> </a></p>
+<ul>
+<li>Types: Media item type (Ex: image, audio, video, file) with the possibility of allowing multiple types.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_Types.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_Types.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_Types.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_TypesExample.png" /> </a></p>
+<ul>
+<li><span style="color:red;font  * weight:700;font  * size:20px"> Extensions: </span> The extension for the selected type (Ex: jpg, png if type is image Usually, the extensions are added in the media config section. For each media, there exists<ul>
+<li>type: image, audio, video, file, live, smil.</li>
+<li>extensions: extension for the selected type, e.g. jpg,png if type = image.</li>
+<li>filters: applied on this type, e.g. image/* for image type and video/mp4 for video type.</li>
+<li>Sizes: applicable on images. If specified, the user will be able to crop uploaded images based on these ratios. The ratios are added in the media configuration under Crop Configs where each crop config has: name (e.g. قياس16/9), value (e.g. 1), ratio (e.g. 1.78), filename (e.g. 1). In case the size is set to قياس مربع (800x800), it will be displayed as the selected option for the uploaded image.</li>
+</ul>
+</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_Sizes.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_Sizes.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_SizesExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_SizesExample.png" /> </a></p>
+<ul>
+<li>Required: If enabled, it's mandatory to upload this item in the post form.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_Required.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_Required.png" /> </a></p>
+<p>A popup is diplayed on the screen if the required field is empty.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_RequiredExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_RequiredExample.png" /> </a></p>
+<ul>
+<li>No Crop: if enabled, the user won’t be able to crop the image after uploading it.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_NoCrop.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_NoCrop.png" /> </a></p>
+<ul>
+<li><span style="color:red;font  * weight:700;font  * size:20px"> No Caption: </span> If enabled, caption becomes optional.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_NoCaption.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_NoCaption.png" /> </a></p>
+<ul>
+<li>Order: media order</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_Order.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_Order.png" /> </a></p>
+<ul>
+<li>Enable Custom Caption: if enabled, the user may override a media caption (specifically for this post) when selecting an existing media from the archive.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_EnableCustomCaption.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_EnableCustomCaption.png" /> </a></p>
+<ul>
+<li><span style="color:red;font  * weight:700;font  * size:20px"> FrameTemplates: </span> The code of the watermark defined in the MediaFrameConfigs, e.g. فيديو</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_FrameTemplates.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_FrameTemplates.png" /> </a></p>
+<ul>
+<li><span style="color:red;font  * weight:700;font  * size:20px"> DefaultFrameTemplate: </span> The default code of the watermark defined in the MediaFrameConfigs, e.g. صورة البرنامج</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Media_DefaultFrameTemplate.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Media_DefaultFrameTemplate.png" /> </a></p>
+<ul>
+<li>ShowPlacement: Used for accessing the placement of the media item.</li>
+<li>SizeHelpMessage: Help message related to the size of the media item.</li>
+</ul>
+<p>Note: If the content of this post type is enabled, then we need to add the following media template:</p>
+<pre><code>{
+   "Placement": "editor",
+   "Title": "ميديا داخلية",
+   "Types": "image,video",
+   "Extensions": "",
+   "Sizes": "",
+   "Count": "*1",
+   "MaxSize": "",
+   "Required": "false",
+   "NoCrop": "true",
+   "Compress": "true",
+   "NoCaption": "true",
+   "Order": "0",
+   "ShowPlacement": "false",
+   "EnableCustomCaption": "false",
+   "FrameTemplates": "",
+   "DefaultFrameTemplate": "",
+   "HasDataFor": ""
+}
+</code></pre>
+<h2 id="relations">Relations</h2>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Fields.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Fields.png" /> </a></p>
+<ul>
+<li>Name: The name of the relation, e.g. الكاتب </li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Name.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Name.png" /> </a></p>
+<ul>
+<li>Code: The code of the relation used to relate post types together, e.g. author</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Code.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Code.png" /> </a></p>
+<ul>
+<li><span style="color:red;font  * weight:700;font  * size:20px"> Icon: </span> The Icon of the relation to be displayed on the Admin panel. Note that when hovering on an icon, its name is displayed as a text, e.g. "fas fa  * birthday  * cake" for the birthday cake icon.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Icon.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Icon.png" /> </a></p>
+<ul>
+<li>Types: The types of posts used in this relation, e.g.  article for the Author relation allows the relation named Author to have a posts related to type article. More than one type can be selected from the displayed dropdown list.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Types.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Types.png" /> </a></p>
+<ul>
+<li>Terms: The term(s) that this relation can be related to, e.g.  Politics </li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Terms.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Terms.png" /> </a></p>
+<ul>
+<li>Order: The order of the relation used to show the relation in the post edit or create form, e.g. 1 means that the current relation appears as the first relation in the post form</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Order.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Order.png" /> </a></p>
+<ul>
+<li>Minimum: The number of the posts that are allowed to be related to this post type. The user can’t select related posts less than the min number. E.g. if Min is set to 1, an article should at least have 1 author, meaning that this field is mandatory.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Min.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Min.png" /> </a> </p>
+<ul>
+<li>Maximum: The number of posts that are allowed to be related to this post type. The user can’t exceed this number when selecting related posts. E.g. if Max is set to 3, an article should have maximum 3 authors</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Max.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Max.png" /> </a></p>
+<p>After adding 2 authors for an article, the search option remains visible until the user selects 3 authors.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_ArticleAuthor.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_ArticleAuthor.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_ArticleAuthors.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_ArticleAuthors.png" /> </a></p>
+<ul>
+<li>Direction: The direction used to identify the type of the relationship if it’s up/down (in Author Post type it is <strong>up</strong> relation while in Article type it is <strong>down</strong> relation ). </li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_Direction.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_Direction.png" /> </a> </p>
+<ul>
+<li>Exclude from Path: if enabled, it won’t be included neither in the breadcrumbs nor in the page header.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_ExcludeFromPath.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_ExcludeFromPath.png" /> </a> </p>
+<ul>
+<li>Inherited Metas: The Inherited Metadata between the two post types, is a comma separated field used to show the relative meta data in the Post edit or create form. </li>
+<li>
+<p>ApiStyle: To define the style of the API, e.g. parent
+    <a href="../../../assets/images/setupSubscription/posttypes/Relations_ApiStyle.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relations_ApiStyle.png" /> </a> </p>
+</li>
+<li>
+<p>FrontStyle: Used when the widget data source is CurrentUpRelatives to choose the style of the relations reflected on website, also in the SourceSpecification of the Widget data source,("groupby=subterms,groupby=mainterms,groupby=types”), e.g. parent</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relations_FrontStyle.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relations_FrontStyle.png" /> </a> </p>
+</li>
+<li>
+<p>API request size: Used for down relatives size in search criteria in the Mobile platform, e.g. if set to 3, it returns 3 articles in a JSON file.
+    <a href="../../../assets/images/setupSubscription/posttypes/Relations_ApiRequestSize.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relations_ApiRequestSize.png" /> </a> </p>
+</li>
+<li>
+<p>FrontRequestSize: To specify the post relatives size in the front platform, e.g. if set to 4, only 4 articles are displayed in the front.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relations_FrontRequestSize.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relations_FrontRequestSize.png" /> </a> </p>
+</li>
+<li>
+<p>Fetch Down Anyway: Is used to decide if the query should fetch the down relatives or not, e.g. if it is enabled for the AuthorArticle relation, it returns all the related articles for an author.
+     <a href="../../../assets/images/setupSubscription/posttypes/Relations_FetchDownAnyway.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relations_FetchDownAnyway.png" /> </a> </p>
+</li>
+<li>
+<p>Hide In List: Used in the table of posts to allow the up relative (author) to be displayed as a Column or not. As the below image shows (Author) is relative so we can turn on the hide in list in case we don’t need to show the relative column in the table.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_HideInListExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_HideInListExample.png" /> </a> </p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_HideInList.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_HideInList.png" /> </a> </p>
+<pre><code>The (Author) column is hidden from the table after turning on the Hide In List.
+</code></pre>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_HideInListEx.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_HideInListEx.png" /> </a> </p>
+</li>
+<li>
+<p>Is Main:  To select if a relation is main or not. The main relation is used in jsonld render and in the custom tag render.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Relation_IsMain.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Relation_IsMain.png" /> </a></p>
+</li>
+</ul>
+<h2 id="terms">Terms</h2>
+<ul>
+<li>
+<p>Taxonomy Code: the code of the taxonomy to be used in this post, e.g. category.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_TaxonomyCode.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_TaxonomyCode.png" /> </a></p>
+</li>
+<li>
+<p>Minimum Terms: minimum allowed number of terms that this post should belong to.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_MinimumTerms.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_MinimumTerms.png" /> </a></p>
+</li>
+<li>
+<p>Maximum Terms: maximum allowed number of terms that this post should belong to ( if it is -1 it means that it is infinite).</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_MaximumTerms.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_MaximumTerms.png" /> </a></p>
+<ul>
+<li>Default Value: The default term used if it’s not filled in the form.</li>
+<li>Style: This is to specify how to display terms of this taxonomy in the post creation form, e.g. checkbox, multicombo. If empty, dropdown is used. </li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_Style.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_Style.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_MulticomboStyle.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_MulticomboStyle.png" /> </a></p>
+<p>If it is checkbox, the terms are displayed as in the below figure.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_CheckboxStyle.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_CheckboxStyle.png" /> </a></p>
+<ul>
+<li>Website Style: The style used in the form, e.g. hidden, checkbox, radio, dropdown, multicombo.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_WebsiteStyle.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_WebsiteStyle.png" /> </a></p>
+</li>
+<li>
+<p>Is Main: To select if a term is main or not.</p>
+</li>
+<li>
+<p>Show Published Only: if isMain is enabled, this should be enabled as well.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_IsMainShowPublishedOnly.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_IsMainShowPublishedOnly.png" /> </a></p>
+</li>
+<li>
+<p>Has Publisher: It is used in the Admin to decide if the taxonomy should be displayed in the Publisher page or not to allow the user to sort by taxonomy, For example: Category is on, tags is off due to the huge number of tags.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_HasPublishercategory.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_HasPublishercategory.png" /> </a></p>
+<p>The terms of "category" are displayed as in the below image.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Terms_HasPublisherExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Terms_HasPublisherExample.png" /> </a></p>
+</li>
+</ul>
+<h2 id="templates">Templates</h2>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_TemplateFields.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_TemplateFields.png" /> </a></p>
+<ul>
+<li>
+<p>Index Template Id: the template used for the term index page, e.g. /news or /category.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_IndexTemplateId.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_IndexTemplateId.png" /> </a></p>
+</li>
+<li>
+<p>Details Template Id: It is used for the details page of the post, e.g. /article/sports/1332</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_DetailsTemplateId.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_DetailsTemplateId.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_DetailsTemplateIdExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_DetailsTemplateIdExample.png" /> </a></p>
+</li>
+<li>
+<p>Terms Template Id: the template index page, e.g. /category/sports.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_TermsTemplateId.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_TermsTemplateId.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/posttypes_TermsTemplateIdExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/posttypes_TermsTemplateIdExample.png" /> </a></p>
+</li>
+<li>
+<p>Infinite Scroll Template Id: It is used for infinite scroll pages, e.g. more articles related to the current page are loaded when srolling down.</p>
+</li>
+<li>
+<p>Mobile List Style: list style of post type returned by the API.</p>
+</li>
+</ul>
+<h2 id="analytics">Analytics</h2>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_Fields.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_Fields.png" /> </a></p>
+<ul>
+<li>Allow Custom Meta Tags: if enabled, an SEO tab will appear which allow users to specify custom meta tags for this post.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_AllowCustomMetaTags.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_AllowCustomMetaTags.png" /> </a></p>
+<p>To enable this, you still need to enable EnableCustomMetaTags in SEO configs.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_EnableCustomMetaTags.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_EnableCustomMetaTags.png" /> </a></p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_SeoConfigs.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_SeoConfigs.png" /> </a></p>
+<p>Then, the SEO section is displayed as in the image below.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_Seo.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_Seo.png" /> </a></p>
+<p>After adding a meta tag, the user can edit or delete it.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_SeoExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_SeoExample.png" /> </a></p>
+<ul>
+<li>Listing Meta Title: meta title of post listing page (e.g. /article)</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_ListingMetaTitle.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_ListingMetaTitle.png" /> </a></p>
+<ul>
+<li>Listing Meta Description: meta description of post listing page (e.g. /article)</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_ListingMetaDescription.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_ListingMetaDescription.png" /> </a></p>
+<ul>
+<li>Content Group: , e.g. Podcasts. It is selected from a list of options (in analytics configs, content group, e.g. News:1,Programs:2,Infographics:3). </li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_ContentGroupsExample.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_ContentGroupsExample.png" /> </a></p>
+<p>After filling the content groups in analytics configs, they are displayed in the form of a dropdown list as in the below image.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_ContentGroupList.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_ContentGroupList.png" /> </a></p>
+<ul>
+<li>Source Type: term, relative, or both if none is selected </li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_SourceType.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_SourceType.png" /> </a></p>
+<ul>
+<li>Source Spec: usually the type, e.g. podcasts</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Analytics_SourceSpec.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Analytics_SourceSpec.png" /> </a></p>
+<ul>
+<li>Change Frequency: change frequency used in the sitemaps, defaults to daily.</li>
+<li>Priority: priority used in the sitemaps, defaults to 1.</li>
+</ul>
+<h2 id="settings">Settings</h2>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_Fields.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_Fields.png" /> </a></p>
+<ul>
+<li>
+<p>EnableAMP: To choose if AMP should be enabled. If enabled, we need to specify the AMP URL pattern.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_EnableAMP.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_EnableAMP.png" /> </a></p>
+</li>
+<li>
+<p>EnablePodcastRSS: If post and URL are visible for public then RSS for podcast will be enabled.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_EnablePodcastRSS.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_EnablePodcastRSS.png" /> </a></p>
+</li>
+<li>
+<p>Section: e.g. الأخبار</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_Section.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_Section.png" /> </a></p>
+</li>
+<li>
+<p>UrlPattern: It defines the URL pattern of posts of this type e.g. "[posttype]/[category]/[id]/[slug]"</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_UrlPattern.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_UrlPattern.png" /> </a></p>
+</li>
+<li>
+<p>MediaTitlePattern: The pattern that describes the title of media post, e.g. [postterms.video] [posttitle] </p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_MediaTitlePattern.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_MediaTitlePattern.png" /> </a></p>
+</li>
+<li>
+<p>MediaDescriptionPattern: The pattern that describes the media post.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_MediaDescriptionPattern.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_MediaDescriptionPattern.png" /> </a></p>
+</li>
+<li>
+<p>MediaTagsPattern: The pattern that describes the tags of media post</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_MediaTagsPattern.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_MediaTagsPattern.png" /> </a></p>
+</li>
+<li>
+<p>SlugLength: The max length of slug in the URL.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_SlugLength.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_SlugLength.png" /> </a></p>
+</li>
+<li>
+<p>AMPUrlPattern: defines the URL pattern of AMP pages having this type, e.g. [amp/[posttype]/[id]/[slug]</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_AMPUrlPattern.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_AMPUrlPattern.png" /> </a> </p>
+</li>
+<li>
+<p>ShowTitle: The name of the show.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_ShowTitle.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_ShowTitle.png" /> </a> </p>
+<p>Note that doing the above doesn’t enable AMP as it still needs some additional configuration.
+  * Format: the @type in jsonld, e.g. NewsArticle.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_Format.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_Format.png" /> </a> </p>
+</li>
+<li>
+<p>Publisher Size: max size of posts having this type that can be ordered through the publisher.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_PublisherSize.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_PublisherSize.png" /> </a> </p>
+</li>
+<li>
+<p>Publisher Title: To identify the title of the publisher</p>
+</li>
+<li>
+<p>Cache Duration: caching duration of posts</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_CashDuration.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_CashDuration.png" /> </a> </p>
+</li>
+<li>
+<p>Form View: the name of the view (inside Posts/Custom folder) in case we want to use another form, e.g. Schedule.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_FormView.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_FormView.png" /> </a> </p>
+</li>
+<li>
+<p>Breadcrumbs Pattern: pattern of breadcrumbs. The default is home<em>posttype</em>taxonomy, e.g. relative-posttype-post.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_BreadcrumbsPattern.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_BreadcrumbsPattern.png" /> </a> </p>
+</li>
+<li>
+<p>Tag Source: default value of tag source, used in case the one in the widget was empty.</p>
+</li>
+<li>
+<p>Icon/Color: if filled and the tag source was configured to return the type, the icon/color (property named style) will be returned as well to the front/API.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_IconColor.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_IconColor.png" /> </a> </p>
+</li>
+<li>
+<p>Exclude: If enabled, exclude from dashboard.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_Exclude.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_Exclude.png" /> </a> </p>
+</li>
+<li>
+<p>User Generated: this option should be checked, if posts of this type are entered by end users.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Settings_UserGenerated.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Settings_UserGenerated.png" /> </a> </p>
+</li>
+<li>
+<p>Thumbnail: photo URL which acts as a default image for posts of this type.</p>
+</li>
+</ul>
+<h2 id="form">Form</h2>
+<ul>
+<li>Use Custom Configs: if enabled, the configuration below this will be considered. The fields include: title, summary, date (published date), end date (expiry date), content, short title, Notes (used among editors), platform, url, style, template. </li>
+</ul>
+<p>Their properties include: Show, Required, Label, Values, Max length, Min length.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Form_Properties.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Form_Properties.png" /> </a> </p>
+<ul>
+<li>Show: If enabled, this field will appear in the form.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Form_Show.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Form_Show.png" /> </a> </p>
+<ul>
+<li>Required: If enabled, it is mandatory to fill this field in the form.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Form_Required.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Form_Required.png" /> </a> </p>
+<ul>
+<li>Label: The label of this field, e.g. تفاصيل</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Form_Label.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Form_Label.png" /> </a> </p>
+<ul>
+<li>Values: The list of allowed values for this field.</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Form_Values.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Form_Values.png" /> </a> </p>
+<ul>
+<li>MaxLength: The maximum allowed length (if string), e.g. 1000</li>
+<li>MinLength: The minimum allowed length (if string), e.g. 1</li>
+</ul>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Form_MinMax.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Form_MinMax.png" /> </a> </p>
+<p>Note that there’s no need to translate the fields’ labels because when the resources are saved, they will be used from there, unless we want a different translation, then we shall fill the label property.</p>
+<p><a href="../../../assets/images/setupSubscription/posttypes/Form_Fields.png" target="_blank"> <img alt="posttypes_tabs" src="../../../assets/images/setupSubscription/posttypes/Form_Fields.png" /> </a> </p>
+<ul>
+<li>Multilingual: To enable multi languages content.</li>
+<li>Allow Import: If enabled, an import button will be displayed in the post listing page.</li>
+<li>Order: To specify the order to show the form.</li>
+<li>DefaultForm: If the form was not specified it will take this value as a default for the form.</li>
+<li>DefaultIndex: In case index was not identified it will take this index as a default value.</li>
+<li>After Save Action: To specify what action should be done after save (by default: Edit).</li>
+<li>Additional Columns: To add additional columns in the post listing page, e.g. CreatedBy:[post.CreatedByUser.LastName]&lt;BR&gt;[post.CreationDate]</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../../community/contentHub/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Content Hub" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Content Hub
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../taxonomy/taxonomy/" class="md-footer__link md-footer__link--next" aria-label="Next: Taxonomy" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Taxonomy
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

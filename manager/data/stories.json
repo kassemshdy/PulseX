@@ -1,0 +1,1568 @@
+{
+  "epics": [
+    {
+      "id": "epic-1",
+      "name": "Content Management",
+      "description": "Create, edit, publish content with flexible types",
+      "color": "#3B82F6",
+      "status": "active"
+    },
+    {
+      "id": "epic-2",
+      "name": "Media Library",
+      "description": "Upload, organize, and manage media files",
+      "color": "#10B981",
+      "status": "active"
+    },
+    {
+      "id": "epic-3",
+      "name": "Page Builder",
+      "description": "Design pages with drag-and-drop widgets",
+      "color": "#F59E0B",
+      "status": "active"
+    },
+    {
+      "id": "epic-4",
+      "name": "Social Media Automation",
+      "description": "Publish to multiple platforms",
+      "color": "#8B5CF6",
+      "status": "active"
+    },
+    {
+      "id": "epic-5",
+      "name": "Search & Elasticsearch",
+      "description": "Full-text search and content indexing",
+      "color": "#A855F7",
+      "status": "active"
+    },
+    {
+      "id": "epic-6",
+      "name": "Caching Layer",
+      "description": "Multi-tier caching for performance",
+      "color": "#6366F1",
+      "status": "active"
+    },
+    {
+      "id": "epic-7",
+      "name": "Multi-tenancy & Settings",
+      "description": "Subscription management and configuration",
+      "color": "#EC4899",
+      "status": "active"
+    },
+    {
+      "id": "epic-8",
+      "name": "Testing Infrastructure",
+      "description": "Unit, integration, and E2E testing",
+      "color": "#06B6D4",
+      "status": "active"
+    },
+    {
+      "id": "epic-9",
+      "name": "PulseX Platform",
+      "description": "Marketing site, signup, and user onboarding",
+      "color": "#14B8A6",
+      "status": "active"
+    }
+  ],
+  "stories": [
+    {
+      "id": "story-1",
+      "epicId": "epic-1",
+      "title": "Setup Database Schema & Migrations",
+      "description": "As a developer, I want to set up the database schema with Prisma migrations, so that we have a solid foundation for the CMS.",
+      "status": "done",
+      "priority": "critical",
+      "estimate": "4h",
+      "assignee": "AI Assistant",
+      "tags": [
+        "database",
+        "prisma",
+        "setup"
+      ],
+      "acceptanceCriteria": [
+        "Prisma schema is complete with all tables",
+        "Initial migration is created",
+        "Database can be created with 'prisma migrate dev'",
+        "Seed script populates initial data",
+        "Docker Compose services start successfully"
+      ],
+      "technicalTasks": [
+        "Review existing schema.prisma file",
+        "Run prisma migrate dev to create database",
+        "Update seed script with sample data",
+        "Test migration rollback",
+        "Document setup process"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T12:56:53.929Z"
+    },
+    {
+      "id": "story-2",
+      "epicId": "epic-1",
+      "title": "Implement PostType CRUD Operations",
+      "description": "As an admin, I want to create, read, update, and delete content types dynamically, so that I can configure the CMS for any use case.",
+      "status": "todo",
+      "priority": "critical",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "api",
+        "post-type"
+      ],
+      "acceptanceCriteria": [
+        "POST /api/post-types creates new type",
+        "GET /api/post-types lists all types",
+        "GET /api/post-types/:id returns single type",
+        "PUT /api/post-types/:id updates type",
+        "DELETE /api/post-types/:id removes type",
+        "JSON schema validates field definitions",
+        "Returns proper error messages"
+      ],
+      "technicalTasks": [
+        "Implement PostTypeService.create()",
+        "Implement PostTypeService.findAll()",
+        "Implement PostTypeService.findById()",
+        "Implement PostTypeService.update()",
+        "Implement PostTypeService.delete()",
+        "Add Zod schemas for validation",
+        "Create controller endpoints",
+        "Write unit tests for service layer"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-3",
+      "epicId": "epic-1",
+      "title": "Implement Post CRUD Operations",
+      "description": "As a content editor, I want to create, read, update, and delete posts, so that I can manage content effectively.",
+      "status": "todo",
+      "priority": "critical",
+      "estimate": "12h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "api",
+        "posts"
+      ],
+      "acceptanceCriteria": [
+        "POST /api/posts creates new post with meta fields",
+        "GET /api/posts lists posts with pagination",
+        "GET /api/posts/:id returns post with all relationships",
+        "PUT /api/posts/:id updates post and meta",
+        "DELETE /api/posts/:id soft deletes post",
+        "Supports filtering by type, status, date",
+        "Transaction ensures data consistency"
+      ],
+      "technicalTasks": [
+        "Implement PostService.create() with PostMeta",
+        "Implement PostService.findAll() with filters",
+        "Implement PostService.findById() with relations",
+        "Implement PostService.update() with meta updates",
+        "Implement PostService.delete() as soft delete",
+        "Add pagination logic",
+        "Create controller endpoints",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-4",
+      "epicId": "epic-1",
+      "title": "Build PostMeta Dynamic Fields System",
+      "description": "As an admin, I want posts to store custom fields defined by their PostType, so that content structure is flexible.",
+      "status": "todo",
+      "priority": "high",
+      "estimate": "6h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "database",
+        "meta"
+      ],
+      "acceptanceCriteria": [
+        "PostMeta table stores key-value pairs per post",
+        "Can store different data types (text, number, date, JSON)",
+        "Meta fields are validated against PostType schema",
+        "Can query posts by meta field values",
+        "Efficient indexing for common queries"
+      ],
+      "technicalTasks": [
+        "Add database indexes on PostMeta.key",
+        "Implement meta field validation",
+        "Add meta upsert logic in PostService",
+        "Implement meta filtering in queries",
+        "Add meta field type casting",
+        "Write tests for different field types"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-5",
+      "epicId": "epic-1",
+      "title": "Implement PostRelation System",
+      "description": "As an admin, I want to relate posts to each other dynamically (e.g., author, related articles), so that content can reference other content.",
+      "status": "todo",
+      "priority": "high",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "relations",
+        "database"
+      ],
+      "acceptanceCriteria": [
+        "Can create relations between posts",
+        "Supports different relation types (author, related, parent)",
+        "Can query posts by relations",
+        "Bi-directional queries work",
+        "Prevents circular dependencies"
+      ],
+      "technicalTasks": [
+        "Implement PostRelationService.create()",
+        "Add relation type validation",
+        "Implement relation queries in PostService",
+        "Add circular dependency check",
+        "Create API endpoints for relations",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-6",
+      "epicId": "epic-1",
+      "title": "Implement Taxonomy & Term Management",
+      "description": "As an admin, I want to create taxonomies (categories, tags) and assign terms to posts, so that content is organized.",
+      "status": "todo",
+      "priority": "high",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "taxonomy",
+        "api"
+      ],
+      "acceptanceCriteria": [
+        "Can create taxonomies with name and type",
+        "Can create terms under taxonomies",
+        "Can assign multiple terms to posts",
+        "Terms support hierarchy (parent/child)",
+        "Can filter posts by terms"
+      ],
+      "technicalTasks": [
+        "Implement TaxonomyService CRUD",
+        "Implement TermService CRUD",
+        "Add term assignment logic",
+        "Implement hierarchical term queries",
+        "Create API endpoints",
+        "Write unit tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-7",
+      "epicId": "epic-2",
+      "title": "Setup Media Storage Infrastructure",
+      "description": "As a developer, I want to set up media storage (local and S3-compatible), so that we can handle file uploads.",
+      "status": "backlog",
+      "priority": "critical",
+      "estimate": "6h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "storage",
+        "infrastructure"
+      ],
+      "acceptanceCriteria": [
+        "Local storage works for development",
+        "S3-compatible storage configured",
+        "Environment variables control storage type",
+        "Files are organized by date/type",
+        "Storage abstraction layer exists"
+      ],
+      "technicalTasks": [
+        "Install multer and aws-sdk",
+        "Create StorageService abstraction",
+        "Implement LocalStorageProvider",
+        "Implement S3StorageProvider",
+        "Add configuration logic",
+        "Test both storage types"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-8",
+      "epicId": "epic-2",
+      "title": "Implement Resumable File Uploads",
+      "description": "As a content editor, I want to upload large video files with resume capability, so that uploads don't fail on network issues.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "16h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "upload",
+        "tus"
+      ],
+      "acceptanceCriteria": [
+        "Uses tus protocol for resumable uploads",
+        "Can pause and resume uploads",
+        "Shows upload progress",
+        "Handles network interruptions gracefully",
+        "Cleans up abandoned uploads"
+      ],
+      "technicalTasks": [
+        "Install tus-node-server",
+        "Configure tus endpoints",
+        "Add upload progress tracking",
+        "Implement cleanup job",
+        "Create frontend upload component",
+        "Test with large files",
+        "Handle concurrent uploads"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-9",
+      "epicId": "epic-2",
+      "title": "Add Image Processing & Thumbnails",
+      "description": "As a content editor, I want uploaded images to be automatically optimized and have thumbnails generated, so that the site loads faster.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "image-processing",
+        "sharp"
+      ],
+      "acceptanceCriteria": [
+        "Images are compressed on upload",
+        "Multiple thumbnail sizes generated (small, medium, large)",
+        "Original file is preserved",
+        "WebP versions created for modern browsers",
+        "Metadata extracted (dimensions, EXIF)"
+      ],
+      "technicalTasks": [
+        "Install sharp library",
+        "Create ImageProcessingService",
+        "Add thumbnail generation logic",
+        "Implement WebP conversion",
+        "Extract and store metadata",
+        "Queue processing for background",
+        "Write tests with sample images"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-10",
+      "epicId": "epic-2",
+      "title": "Build Media Library API",
+      "description": "As a content editor, I want to browse, search, and manage media files, so that I can find and reuse assets easily.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "api",
+        "media"
+      ],
+      "acceptanceCriteria": [
+        "GET /api/media lists media with pagination",
+        "Can filter by type, date, tags",
+        "Can search by filename or alt text",
+        "Can update media metadata",
+        "Can delete media (soft delete)",
+        "Returns CDN URLs for files"
+      ],
+      "technicalTasks": [
+        "Implement MediaService.findAll()",
+        "Add filtering and pagination",
+        "Implement search functionality",
+        "Create update endpoint",
+        "Add soft delete logic",
+        "Generate CDN URLs",
+        "Write API tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-11",
+      "epicId": "epic-3",
+      "title": "Design Widget System Architecture",
+      "description": "As a developer, I want a well-designed widget system, so that we can build reusable page components.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "6h",
+      "assignee": null,
+      "tags": [
+        "architecture",
+        "widgets",
+        "design"
+      ],
+      "acceptanceCriteria": [
+        "Widget interface defined with clear contract",
+        "Widgets support configuration via JSON",
+        "Data source binding mechanism exists",
+        "Widget rendering is consistent",
+        "Documentation explains how to create widgets"
+      ],
+      "technicalTasks": [
+        "Define Widget TypeScript interface",
+        "Create base Widget abstract class",
+        "Design configuration schema",
+        "Implement data source resolver",
+        "Create widget registry",
+        "Write architecture documentation"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-12",
+      "epicId": "epic-3",
+      "title": "Build Core Page Builder UI",
+      "description": "As a designer, I want a drag-and-drop page builder, so that I can create custom page layouts visually.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "24h",
+      "assignee": null,
+      "tags": [
+        "frontend",
+        "page-builder",
+        "dnd"
+      ],
+      "acceptanceCriteria": [
+        "Can drag widgets from sidebar to zones",
+        "Can reorder widgets within zones",
+        "Can delete widgets from layout",
+        "Changes save automatically",
+        "Undo/redo functionality works",
+        "Preview mode available"
+      ],
+      "technicalTasks": [
+        "Setup dnd-kit library",
+        "Create zone components (header, main, footer)",
+        "Implement widget dragging logic",
+        "Add auto-save functionality",
+        "Implement undo/redo stack",
+        "Create preview mode",
+        "Style with Tailwind CSS"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-13",
+      "epicId": "epic-3",
+      "title": "Implement Widget Configuration System",
+      "description": "As a designer, I want to configure each widget's data source and appearance, so that widgets display the right content.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "12h",
+      "assignee": null,
+      "tags": [
+        "frontend",
+        "widgets",
+        "config"
+      ],
+      "acceptanceCriteria": [
+        "Can open widget settings modal",
+        "Can select data source (latest posts, specific posts, etc.)",
+        "Can configure display options",
+        "Can set styling preferences",
+        "Configuration saves and applies immediately"
+      ],
+      "technicalTasks": [
+        "Create WidgetConfigModal component",
+        "Build data source selector",
+        "Add display options form",
+        "Implement styling controls",
+        "Save configuration to JSON",
+        "Apply config to widget rendering",
+        "Add validation"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-14",
+      "epicId": "epic-3",
+      "title": "Create Reusable Widget Library",
+      "description": "As a designer, I want a library of pre-built widgets, so that I can quickly build pages.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "20h",
+      "assignee": null,
+      "tags": [
+        "frontend",
+        "widgets",
+        "components"
+      ],
+      "acceptanceCriteria": [
+        "Hero widget with image and CTA",
+        "Article list widget with various layouts",
+        "Article carousel widget",
+        "Category grid widget",
+        "Newsletter signup widget",
+        "Social media feed widget",
+        "All widgets are responsive"
+      ],
+      "technicalTasks": [
+        "Create HeroWidget component",
+        "Create ArticleListWidget",
+        "Create ArticleCarouselWidget",
+        "Create CategoryGridWidget",
+        "Create NewsletterWidget",
+        "Create SocialFeedWidget",
+        "Test responsiveness",
+        "Document widget usage"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-15",
+      "epicId": "epic-3",
+      "title": "Implement Theme & Template Management",
+      "description": "As an admin, I want to manage themes and templates, so that I can change the site appearance without code changes.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "12h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "themes",
+        "templates"
+      ],
+      "acceptanceCriteria": [
+        "Can create themes with name and config",
+        "Can create templates under themes",
+        "Templates store widget layout as JSON",
+        "Can activate/deactivate themes",
+        "Can assign templates to pages",
+        "Templates can be duplicated"
+      ],
+      "technicalTasks": [
+        "Implement ThemeService CRUD",
+        "Implement TemplateService CRUD",
+        "Add template duplication logic",
+        "Create API endpoints",
+        "Build theme activation logic",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-16",
+      "epicId": "epic-4",
+      "title": "Implement Channel Management System",
+      "description": "As an admin, I want to manage social media channels, so that I can publish content to multiple platforms.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "social-media",
+        "channels"
+      ],
+      "acceptanceCriteria": [
+        "Can add Facebook, Twitter, YouTube, Telegram channels",
+        "Credentials stored encrypted",
+        "Can test channel connection",
+        "Can activate/deactivate channels",
+        "Supports multiple accounts per platform"
+      ],
+      "technicalTasks": [
+        "Implement ChannelService CRUD",
+        "Add credential encryption logic",
+        "Implement connection test endpoint",
+        "Create API endpoints",
+        "Add OAuth callback handlers",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-17",
+      "epicId": "epic-4",
+      "title": "Setup BullMQ for Background Jobs",
+      "description": "As a developer, I want a job queue system, so that long-running tasks don't block the API.",
+      "status": "backlog",
+      "priority": "critical",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "queue",
+        "bullmq"
+      ],
+      "acceptanceCriteria": [
+        "BullMQ configured with Redis",
+        "Can add jobs to queue",
+        "Worker processes jobs in background",
+        "Job progress tracked in database",
+        "Failed jobs are retried",
+        "Dashboard shows job status"
+      ],
+      "technicalTasks": [
+        "Install BullMQ and dependencies",
+        "Configure Redis connection",
+        "Create QueueService abstraction",
+        "Implement worker process",
+        "Add job progress tracking",
+        "Setup job retry logic",
+        "Add Bull Board dashboard"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-18",
+      "epicId": "epic-4",
+      "title": "Build Social Media Publishers",
+      "description": "As a content editor, I want to publish posts to social media platforms, so that content reaches my audience.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "20h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "social-media",
+        "publishing"
+      ],
+      "acceptanceCriteria": [
+        "Can publish to Facebook pages",
+        "Can publish to Twitter",
+        "Can upload videos to YouTube",
+        "Can send messages to Telegram",
+        "Handles rate limits gracefully",
+        "Retries failed publications"
+      ],
+      "technicalTasks": [
+        "Implement FacebookPublisher",
+        "Implement TwitterPublisher",
+        "Implement YouTubePublisher",
+        "Implement TelegramPublisher",
+        "Add rate limiting logic",
+        "Implement retry mechanism",
+        "Queue publications via BullMQ",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-19",
+      "epicId": "epic-4",
+      "title": "Implement Operation Tracking System",
+      "description": "As a content editor, I want to track long-running operations (e.g., video uploads), so that I know when they complete.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "operations",
+        "tracking"
+      ],
+      "acceptanceCriteria": [
+        "Operations table tracks job status",
+        "Can view operation progress",
+        "Operations can be cancelled",
+        "Failed operations show error messages",
+        "Completed operations are archived"
+      ],
+      "technicalTasks": [
+        "Implement OperationService CRUD",
+        "Add progress update logic",
+        "Implement cancellation",
+        "Add error logging",
+        "Create API endpoints",
+        "Build operations dashboard UI"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-20",
+      "epicId": "epic-4",
+      "title": "Implement Push Notifications",
+      "description": "As an admin, I want to send push notifications via Firebase, so that I can notify users of new content.",
+      "status": "backlog",
+      "priority": "low",
+      "estimate": "12h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "notifications",
+        "firebase"
+      ],
+      "acceptanceCriteria": [
+        "Firebase configured for push notifications",
+        "Can send notifications to topics",
+        "Can target specific devices",
+        "Notifications include title, body, image",
+        "Can schedule notifications",
+        "Tracks delivery status"
+      ],
+      "technicalTasks": [
+        "Setup Firebase Admin SDK",
+        "Implement NotificationService",
+        "Add topic subscription logic",
+        "Implement scheduling",
+        "Track delivery status",
+        "Create API endpoints",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-21",
+      "epicId": "epic-5",
+      "title": "Setup Elasticsearch Integration",
+      "description": "As a developer, I want Elasticsearch configured, so that we can index content for fast search.",
+      "status": "backlog",
+      "priority": "critical",
+      "estimate": "6h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "elasticsearch",
+        "setup"
+      ],
+      "acceptanceCriteria": [
+        "Elasticsearch client configured",
+        "Connection tested and working",
+        "Index templates created",
+        "Mappings defined for Post, Term, Page",
+        "Health check endpoint available"
+      ],
+      "technicalTasks": [
+        "Install @elastic/elasticsearch",
+        "Create ElasticsearchService",
+        "Configure connection",
+        "Define index mappings",
+        "Create index templates",
+        "Add health check",
+        "Test connection"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-22",
+      "epicId": "epic-5",
+      "title": "Implement Content Indexing Service",
+      "description": "As a developer, I want content automatically indexed in Elasticsearch, so that the public API reads from it.",
+      "status": "backlog",
+      "priority": "critical",
+      "estimate": "12h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "indexing",
+        "elasticsearch"
+      ],
+      "acceptanceCriteria": [
+        "Posts indexed on create/update",
+        "Terms indexed on create/update",
+        "Pages and templates indexed",
+        "Widgets and themes indexed",
+        "Deleted content removed from index",
+        "Bulk indexing available"
+      ],
+      "technicalTasks": [
+        "Implement IndexingService",
+        "Add post indexing logic",
+        "Add term indexing logic",
+        "Index pages and templates",
+        "Index widgets and themes",
+        "Implement bulk indexing",
+        "Queue indexing via BullMQ",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-23",
+      "epicId": "epic-5",
+      "title": "Build Search API Endpoints",
+      "description": "As a frontend developer, I want search endpoints, so that users can search content.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "api",
+        "search"
+      ],
+      "acceptanceCriteria": [
+        "GET /api/search supports full-text search",
+        "Can filter by content type",
+        "Can filter by date range",
+        "Supports pagination",
+        "Returns highlighted matches",
+        "Suggests related searches"
+      ],
+      "technicalTasks": [
+        "Implement SearchService",
+        "Add full-text search logic",
+        "Implement filters",
+        "Add pagination",
+        "Implement highlighting",
+        "Add search suggestions",
+        "Create API endpoints",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-24",
+      "epicId": "epic-5",
+      "title": "Implement Widget Data Indexing",
+      "description": "As a developer, I want widget data indexed with denormalized structure, so that front-api queries are fast.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "indexing",
+        "widgets"
+      ],
+      "acceptanceCriteria": [
+        "Widget data fully denormalized in Elasticsearch",
+        "Trending articles indexed with view counts",
+        "Latest articles indexed with publish date",
+        "Category widgets indexed with term data",
+        "Single query retrieves complete widget data"
+      ],
+      "technicalTasks": [
+        "Design widget index schema",
+        "Implement widget data denormalization",
+        "Index trending articles with analytics",
+        "Index latest articles by date",
+        "Index category-based widgets",
+        "Optimize query performance",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-25",
+      "epicId": "epic-6",
+      "title": "Setup Redis Client & Connection",
+      "description": "As a developer, I want Redis configured, so that we can implement caching.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "4h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "redis",
+        "setup"
+      ],
+      "acceptanceCriteria": [
+        "Redis client configured",
+        "Connection tested and working",
+        "Supports pub/sub for cache invalidation",
+        "Health check endpoint available",
+        "Handles connection failures gracefully"
+      ],
+      "technicalTasks": [
+        "Install ioredis",
+        "Create RedisClient service",
+        "Configure connection",
+        "Add pub/sub support",
+        "Implement health check",
+        "Add error handling",
+        "Test connection"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-26",
+      "epicId": "epic-6",
+      "title": "Implement Multi-Tier Cache Service",
+      "description": "As a developer, I want L1 (in-memory) and L2 (Redis) caching, so that reads are extremely fast.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "caching",
+        "performance"
+      ],
+      "acceptanceCriteria": [
+        "L1 cache uses LRU in-memory cache",
+        "L2 cache uses Redis",
+        "Get checks L1 then L2 then source",
+        "Set updates both L1 and L2",
+        "TTL configurable per cache type",
+        "Cache hit/miss metrics available"
+      ],
+      "technicalTasks": [
+        "Implement MemoryCacheClient with LRU",
+        "Update RedisClient for L2",
+        "Create CacheService with tiered logic",
+        "Add TTL support",
+        "Implement metrics tracking",
+        "Write unit tests",
+        "Performance test"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-27",
+      "epicId": "epic-6",
+      "title": "Implement Cache Invalidation Logic",
+      "description": "As a developer, I want cache invalidation on content updates, so that users always see fresh data.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "caching",
+        "invalidation"
+      ],
+      "acceptanceCriteria": [
+        "Post updates invalidate related caches",
+        "Term updates invalidate category caches",
+        "Widget updates invalidate widget caches",
+        "Pub/sub broadcasts invalidations",
+        "Pattern-based invalidation works",
+        "Manual invalidation available"
+      ],
+      "technicalTasks": [
+        "Add invalidation logic to PostService",
+        "Add invalidation to TermService",
+        "Implement pub/sub invalidation",
+        "Add pattern-based invalidation",
+        "Create manual invalidation endpoint",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-28",
+      "epicId": "epic-6",
+      "title": "Build Widget Cache Manager",
+      "description": "As a developer, I want widget data cached efficiently, so that homepage loads are instant.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "caching",
+        "widgets"
+      ],
+      "acceptanceCriteria": [
+        "Widget data cached with short TTL (5-10 min)",
+        "Trending widgets use longer TTL",
+        "Cache warming on deployment",
+        "Widget cache keys scoped by subscription",
+        "Cache stats available"
+      ],
+      "technicalTasks": [
+        "Create WidgetCacheManager",
+        "Implement cache warming logic",
+        "Add subscription-scoped keys",
+        "Implement cache stats tracking",
+        "Create warming script",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-29",
+      "epicId": "epic-7",
+      "title": "Implement Subscription Management",
+      "description": "As an admin, I want to manage subscriptions (tenants), so that the CMS supports multi-tenancy.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "multi-tenancy",
+        "subscription"
+      ],
+      "acceptanceCriteria": [
+        "Can create subscriptions with domain",
+        "Middleware resolves subscription from domain",
+        "All queries scoped to subscriptionId",
+        "Can activate/deactivate subscriptions",
+        "Subscription settings stored as JSON"
+      ],
+      "technicalTasks": [
+        "Implement SubscriptionService CRUD",
+        "Create subscription middleware",
+        "Add subscriptionId to all queries",
+        "Implement settings management",
+        "Create API endpoints",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-30",
+      "epicId": "epic-7",
+      "title": "Implement Domain Binding System",
+      "description": "As an admin, I want to bind custom domains to subscriptions, so that users can access their sites via their own domains.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "domains",
+        "multi-tenancy"
+      ],
+      "acceptanceCriteria": [
+        "Can add custom domains to subscriptions",
+        "Domain verification works",
+        "SSL certificates auto-generated",
+        "Can remove domains",
+        "Primary domain designation"
+      ],
+      "technicalTasks": [
+        "Add domain field to Subscription",
+        "Implement domain verification",
+        "Add SSL certificate logic",
+        "Update middleware for custom domains",
+        "Create API endpoints",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-31",
+      "epicId": "epic-7",
+      "title": "Implement Glossary for i18n",
+      "description": "As an admin, I want to manage translations via glossary, so that content is available in multiple languages.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "backend",
+        "i18n",
+        "glossary"
+      ],
+      "acceptanceCriteria": [
+        "Glossary table stores translations by language",
+        "Can translate post fields, term names, widget text",
+        "API returns content in requested language",
+        "Falls back to default language if missing",
+        "Supports multiple languages per subscription"
+      ],
+      "technicalTasks": [
+        "Implement GlossaryService CRUD",
+        "Add translation lookup logic",
+        "Update API responses with translations",
+        "Implement fallback mechanism",
+        "Create API endpoints",
+        "Write integration tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-32",
+      "epicId": "epic-7",
+      "title": "Build User Onboarding Flow",
+      "description": "As a new user, I want a guided onboarding, so that I can set up my CMS quickly.",
+      "status": "backlog",
+      "priority": "low",
+      "estimate": "16h",
+      "assignee": null,
+      "tags": [
+        "frontend",
+        "onboarding",
+        "ux"
+      ],
+      "acceptanceCriteria": [
+        "Step-by-step wizard for setup",
+        "Creates first content type",
+        "Uploads sample content",
+        "Configures basic settings",
+        "Creates first page",
+        "Tooltips guide user"
+      ],
+      "technicalTasks": [
+        "Design onboarding flow",
+        "Create wizard components",
+        "Implement step navigation",
+        "Add sample data creation",
+        "Implement tooltips",
+        "Track onboarding progress",
+        "Write E2E tests"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-33",
+      "epicId": "epic-8",
+      "title": "Setup Jest for Unit Testing",
+      "description": "As a developer, I want Jest configured, so that I can write unit tests.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "4h",
+      "assignee": null,
+      "tags": [
+        "testing",
+        "jest",
+        "setup"
+      ],
+      "acceptanceCriteria": [
+        "Jest configured for TypeScript",
+        "Can run tests with npm test",
+        "Code coverage reporting enabled",
+        "Test files follow naming convention",
+        "Mock support working"
+      ],
+      "technicalTasks": [
+        "Install Jest and ts-jest",
+        "Configure jest.config.js",
+        "Setup test scripts",
+        "Configure coverage reporting",
+        "Add example unit test",
+        "Document testing guidelines"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-34",
+      "epicId": "epic-8",
+      "title": "Configure Testcontainers for Integration Tests",
+      "description": "As a developer, I want Testcontainers for integration tests, so that tests run against real databases.",
+      "status": "backlog",
+      "priority": "high",
+      "estimate": "6h",
+      "assignee": null,
+      "tags": [
+        "testing",
+        "testcontainers",
+        "integration"
+      ],
+      "acceptanceCriteria": [
+        "Testcontainers starts PostgreSQL for tests",
+        "Testcontainers starts Redis for tests",
+        "Database schema migrated before tests",
+        "Tests isolated and idempotent",
+        "Cleanup happens after tests"
+      ],
+      "technicalTasks": [
+        "Install testcontainers",
+        "Configure PostgreSQL container",
+        "Configure Redis container",
+        "Setup test database migration",
+        "Add cleanup logic",
+        "Write example integration test"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-35",
+      "epicId": "epic-8",
+      "title": "Write API Integration Tests",
+      "description": "As a developer, I want integration tests for all APIs, so that endpoints are verified to work.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "20h",
+      "assignee": null,
+      "tags": [
+        "testing",
+        "api",
+        "integration"
+      ],
+      "acceptanceCriteria": [
+        "All CRUD endpoints tested",
+        "Authentication tested",
+        "Authorization tested",
+        "Error cases tested",
+        "Edge cases covered",
+        "Tests run in CI"
+      ],
+      "technicalTasks": [
+        "Write PostType API tests",
+        "Write Post API tests",
+        "Write Media API tests",
+        "Write Taxonomy API tests",
+        "Write Channel API tests",
+        "Add CI configuration",
+        "Document test patterns"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-36",
+      "epicId": "epic-8",
+      "title": "Setup Playwright for E2E Testing",
+      "description": "As a developer, I want Playwright configured, so that I can write end-to-end tests.",
+      "status": "backlog",
+      "priority": "medium",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "testing",
+        "playwright",
+        "e2e"
+      ],
+      "acceptanceCriteria": [
+        "Playwright configured for all browsers",
+        "Can run E2E tests with npm run test:e2e",
+        "Screenshots captured on failure",
+        "Test reports generated",
+        "Can run in headless mode"
+      ],
+      "technicalTasks": [
+        "Install Playwright",
+        "Configure playwright.config.ts",
+        "Setup test scripts",
+        "Add example E2E test",
+        "Configure CI for E2E tests",
+        "Document E2E patterns"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-37",
+      "epicId": "epic-8",
+      "title": "Add Test Coverage Reporting",
+      "description": "As a developer, I want test coverage reports, so that I can identify untested code.",
+      "status": "backlog",
+      "priority": "low",
+      "estimate": "4h",
+      "assignee": null,
+      "tags": [
+        "testing",
+        "coverage",
+        "quality"
+      ],
+      "acceptanceCriteria": [
+        "Coverage reports generated after tests",
+        "HTML report viewable in browser",
+        "Coverage thresholds enforced",
+        "Reports include all packages",
+        "CI fails if coverage drops"
+      ],
+      "technicalTasks": [
+        "Configure Jest coverage",
+        "Set coverage thresholds",
+        "Add coverage script",
+        "Setup coverage CI check",
+        "Document coverage goals"
+      ],
+      "createdAt": "2026-01-01T08:00:00Z",
+      "updatedAt": "2026-01-01T08:00:00Z"
+    },
+    {
+      "id": "story-38",
+      "epicId": "epic-9",
+      "title": "Build PulseX.com Marketing Site",
+      "description": "As a visitor, I want to see an attractive marketing site at pulsex.com, so that I understand the product and can sign up.",
+      "status": "done",
+      "priority": "critical",
+      "estimate": "12h",
+      "assignee": "AI Assistant",
+      "tags": [
+        "frontend",
+        "marketing",
+        "nextjs"
+      ],
+      "acceptanceCriteria": [
+        "Homepage with hero section",
+        "Features section highlighting CMS capabilities",
+        "Pricing section with plans",
+        "Call-to-action buttons for signup",
+        "Responsive design works on mobile",
+        "SEO meta tags configured",
+        "Fast load time (< 2s)"
+      ],
+      "technicalTasks": [
+        "Create apps/pulsex-site Next.js package",
+        "Build homepage with hero component",
+        "Create features showcase section",
+        "Add pricing cards component",
+        "Implement responsive navigation",
+        "Add SEO metadata",
+        "Deploy to production"
+      ],
+      "createdAt": "2026-01-01T13:00:00Z",
+      "updatedAt": "2026-01-01T14:07:33.707Z"
+    },
+    {
+      "id": "story-39",
+      "epicId": "epic-9",
+      "title": "Implement User Signup Flow",
+      "description": "As a new user, I want to sign up for an account, so that I can start using the CMS platform.",
+      "status": "done",
+      "priority": "critical",
+      "estimate": "10h",
+      "assignee": null,
+      "tags": [
+        "auth",
+        "signup",
+        "backend"
+      ],
+      "acceptanceCriteria": [
+        "Signup form with email, password, site name",
+        "Subdomain availability check",
+        "Email validation",
+        "Password strength requirements",
+        "Create subscription in database",
+        "Assign subdomain (user1.pulsex.com)",
+        "Send welcome email",
+        "Redirect to admin panel after signup"
+      ],
+      "technicalTasks": [
+        "Create signup API endpoint",
+        "Add email validation logic",
+        "Implement subdomain validation",
+        "Create subscription record",
+        "Hash password with bcrypt",
+        "Generate JWT tokens",
+        "Send welcome email",
+        "Build signup UI form"
+      ],
+      "createdAt": "2026-01-01T13:00:00Z",
+      "updatedAt": "2026-01-01T14:41:40.575Z"
+    },
+    {
+      "id": "story-40",
+      "epicId": "epic-9",
+      "title": "Build User Authentication System",
+      "description": "As a user, I want to log in and out securely, so that I can access my admin panel.",
+      "status": "todo",
+      "priority": "critical",
+      "estimate": "8h",
+      "assignee": null,
+      "tags": [
+        "auth",
+        "jwt",
+        "security"
+      ],
+      "acceptanceCriteria": [
+        "Login form with email and password",
+        "JWT token generation on successful login",
+        "Token stored securely in httpOnly cookie",
+        "Logout clears tokens",
+        "Password reset via email",
+        "Session expiry after 7 days",
+        "Remember me option"
+      ],
+      "technicalTasks": [
+        "Create login API endpoint",
+        "Implement password verification",
+        "Generate access and refresh tokens",
+        "Set httpOnly cookies",
+        "Create logout endpoint",
+        "Implement password reset flow",
+        "Add token refresh logic",
+        "Build login UI form"
+      ],
+      "createdAt": "2026-01-01T13:00:00Z",
+      "updatedAt": "2026-01-01T13:00:00Z"
+    },
+    {
+      "id": "story-41",
+      "epicId": "epic-9",
+      "title": "Create User Onboarding Wizard",
+      "description": "As a new user, I want a guided onboarding, so that I can quickly set up my first content.",
+      "status": "todo",
+      "priority": "high",
+      "estimate": "16h",
+      "assignee": null,
+      "tags": [
+        "frontend",
+        "onboarding",
+        "ux"
+      ],
+      "acceptanceCriteria": [
+        "Welcome screen after signup",
+        "Step 1: Create first post type",
+        "Step 2: Add sample content",
+        "Step 3: Configure homepage",
+        "Step 4: Preview website",
+        "Progress indicator showing steps",
+        "Can skip onboarding",
+        "Tooltips guide each step"
+      ],
+      "technicalTasks": [
+        "Create onboarding wizard component",
+        "Build step navigation",
+        "Implement post type creation form",
+        "Add sample content templates",
+        "Create homepage configuration",
+        "Add preview functionality",
+        "Track onboarding progress",
+        "Add skip option"
+      ],
+      "createdAt": "2026-01-01T13:00:00Z",
+      "updatedAt": "2026-01-01T13:00:00Z"
+    },
+    {
+      "id": "story-42",
+      "epicId": "epic-9",
+      "title": "Implement Subdomain Routing",
+      "description": "As the platform, I want to route subdomains to user sites, so that user1.pulsex.com shows user1's website.",
+      "status": "todo",
+      "priority": "high",
+      "estimate": "12h",
+      "assignee": null,
+      "tags": [
+        "infrastructure",
+        "routing",
+        "dns"
+      ],
+      "acceptanceCriteria": [
+        "Subdomains resolve to correct subscription",
+        "Middleware identifies subscription from hostname",
+        "Admin panel accessible at subdomain/admin",
+        "Public site at subdomain root",
+        "Wildcard SSL certificates work",
+        "404 for non-existent subdomains",
+        "Support for custom domains later"
+      ],
+      "technicalTasks": [
+        "Configure DNS wildcard (*.pulsex.com)",
+        "Add subscription resolution middleware",
+        "Update admin-api to handle subdomains",
+        "Update front-api for subdomain routing",
+        "Setup wildcard SSL certificates",
+        "Add domain validation",
+        "Test subdomain routing",
+        "Document DNS setup"
+      ],
+      "createdAt": "2026-01-01T13:00:00Z",
+      "updatedAt": "2026-01-01T13:00:00Z"
+    }
+  ],
+  "sprints": [
+    {
+      "id": "sprint-1",
+      "name": "Sprint 1 - Foundation & Database",
+      "startDate": "2026-01-06",
+      "endDate": "2026-01-19",
+      "storyIds": [
+        "story-1",
+        "story-2",
+        "story-3",
+        "story-4",
+        "story-5",
+        "story-6"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "sprint-2",
+      "name": "Sprint 2 - Media & Storage",
+      "startDate": "2026-01-20",
+      "endDate": "2026-02-02",
+      "storyIds": [
+        "story-7",
+        "story-8",
+        "story-9",
+        "story-10"
+      ],
+      "status": "planning"
+    },
+    {
+      "id": "sprint-3",
+      "name": "Sprint 3 - Page Builder & Widgets",
+      "startDate": "2026-02-03",
+      "endDate": "2026-02-16",
+      "storyIds": [
+        "story-11",
+        "story-12",
+        "story-13",
+        "story-14",
+        "story-15"
+      ],
+      "status": "planning"
+    },
+    {
+      "id": "sprint-4",
+      "name": "Sprint 4 - Social Media & Operations",
+      "startDate": "2026-02-17",
+      "endDate": "2026-03-02",
+      "storyIds": [
+        "story-16",
+        "story-17",
+        "story-18",
+        "story-19",
+        "story-20"
+      ],
+      "status": "planning"
+    },
+    {
+      "id": "sprint-5",
+      "name": "Sprint 5 - Search & Caching",
+      "startDate": "2026-03-03",
+      "endDate": "2026-03-16",
+      "storyIds": [
+        "story-21",
+        "story-22",
+        "story-23",
+        "story-24",
+        "story-25",
+        "story-26",
+        "story-27",
+        "story-28"
+      ],
+      "status": "planning"
+    },
+    {
+      "id": "sprint-6",
+      "name": "Sprint 6 - Multi-tenancy & Testing",
+      "startDate": "2026-03-17",
+      "endDate": "2026-03-30",
+      "storyIds": [
+        "story-29",
+        "story-30",
+        "story-31",
+        "story-32",
+        "story-33",
+        "story-34",
+        "story-35",
+        "story-36",
+        "story-37"
+      ],
+      "status": "planning"
+    }
+  ]
+}

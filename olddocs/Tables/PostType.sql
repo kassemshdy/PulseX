@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[PostType] (
+    [Id]                  UNIQUEIDENTIFIER NOT NULL,
+    [PublicId]            INT              IDENTITY (1, 1) NOT NULL,
+    [Name]                NVARCHAR (150)   NOT NULL,
+    [Code]                NVARCHAR (50)    NOT NULL,
+    [ChildId]             UNIQUEIDENTIFIER NULL,
+    [Relations]           NVARCHAR (MAX)   NULL,
+    [HasContent]          BIT              CONSTRAINT [DF_PostType_HasContent] DEFAULT ((0)) NOT NULL,
+    [MetaTemplate]        NVARCHAR (MAX)   NULL,
+    [MediaTemplate]       NVARCHAR (MAX)   NULL,
+    [CustomJavascript]    NVARCHAR (MAX)   NULL,
+    [CreationDate]        DATETIME         NOT NULL,
+    [LastModified]        DATETIME         NULL,
+    [Status]              INT              CONSTRAINT [DF_PostType_Status] DEFAULT ((10)) NOT NULL,
+    [StatusConfiguration] NVARCHAR (MAX)   NULL,
+    [EnableWidgets]       BIT              CONSTRAINT [DF_PostType_EnableWidgets] DEFAULT ((0)) NOT NULL,
+    [RelatedTaxonomies]   NVARCHAR (MAX)   NULL,
+    [TemplatesConfig]     NVARCHAR (MAX)   NULL,
+    [AnalyticsSettings]   NVARCHAR (MAX)   NULL,
+    [Configs]             NVARCHAR (MAX)   NULL,
+    [SubscriptionId]      UNIQUEIDENTIFIER CONSTRAINT [DF_PostType_SubscriptionId] DEFAULT ('67B6364E-D75C-48BF-BC79-A850AC71885A') NOT NULL,
+    [FormConfigs]         NVARCHAR (MAX)   NULL,
+    [MediaItemId]         UNIQUEIDENTIFIER NULL,
+    CONSTRAINT [PK_PostType] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_PostType_Subscription] FOREIGN KEY ([SubscriptionId]) REFERENCES [dbo].[Subscription] ([Id]),
+    CONSTRAINT [FK_PostTypeMediaItemId] FOREIGN KEY ([MediaItemId]) REFERENCES [dbo].[MediaItem] ([Id])
+);
+

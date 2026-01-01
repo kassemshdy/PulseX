@@ -1,0 +1,126 @@
+name: E2E Tests
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'product/**'
+      - '.github/workflows/e2e-tests.yml'
+  push:
+    branches: [main]
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: cms_user
+          POSTGRES_PASSWORD: cms_password
+          POSTGRES_DB: cms_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+      elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+        env:
+          discovery.type: single-node
+          xpack.security.enabled: false
+          ES_JAVA_OPTS: -Xms512m -Xmx512m
+        options: >-
+          --health-cmd "curl -f http://localhost:9200/_cluster/health || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+        ports:
+          - 9200:9200
+
+    env:
+      DATABASE_URL: postgresql://cms_user:cms_password@localhost:5432/cms_db?schema=public
+      JWT_ACCESS_SECRET: test-access-secret-key-for-ci
+      JWT_REFRESH_SECRET: test-refresh-secret-key-for-ci
+      REDIS_URL: redis://localhost:6379
+      ELASTICSEARCH_URL: http://localhost:9200
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'product/pnpm-lock.yaml'
+
+      - name: Install dependencies
+        working-directory: ./product
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        working-directory: ./product
+        run: |
+          pnpm --filter @cms/shared build
+          pnpm --filter @cms/database build
+          pnpm --filter @cms/cache build
+          pnpm --filter @cms/services build
+
+      - name: Generate Prisma Client
+        working-directory: ./product/packages/database
+        run: pnpm prisma generate
+
+      - name: Run database migrations
+        working-directory: ./product/packages/database
+        run: pnpm prisma migrate deploy
+
+      - name: Seed database
+        working-directory: ./product/packages/database
+        run: pnpm db:seed
+
+      - name: Install Playwright browsers
+        working-directory: ./product/e2e
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Run E2E tests
+        working-directory: ./product/e2e
+        run: pnpm test
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: product/e2e/playwright-report/
+          retention-days: 7
+
+      - name: Upload test screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: product/e2e/test-results/
+          retention-days: 7
+

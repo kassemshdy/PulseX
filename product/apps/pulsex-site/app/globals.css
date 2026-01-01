@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #14B8A6;
+  --secondary: #3B82F6;
+  --accent: #F59E0B;
+}
+
+body {
+  @apply antialiased;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+

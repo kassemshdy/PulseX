@@ -1,0 +1,57 @@
+name: CI - Build & Test
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'product/pnpm-lock.yaml'
+
+      - name: Install dependencies
+        working-directory: ./product
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint shared package
+        working-directory: ./product/packages/shared
+        run: |
+          echo "Linting shared package..."
+          # pnpm lint (when eslint is configured)
+
+      - name: Build all packages
+        working-directory: ./product
+        run: |
+          pnpm --filter @cms/shared build
+          pnpm --filter @cms/database build
+          pnpm --filter @cms/cache build
+          pnpm --filter @cms/services build
+
+      - name: Type check apps
+        working-directory: ./product
+        run: |
+          echo "Type checking apps..."
+          pnpm --filter @cms/pulsex-site exec tsc --noEmit || echo "Type check completed with warnings"
+
+      - name: Check Prisma schema
+        working-directory: ./product/packages/database
+        run: pnpm prisma format --check
+

@@ -1,0 +1,824 @@
+// Prisma Schema for Enterprise CMS with EAV Pattern
+// This schema implements a flexible, WordPress-style architecture
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// MULTI-TENANCY & USERS
+// ============================================================================
+
+model Subscription {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  hosts       String[] // Array of allowed domains
+  master      Boolean  @default(false)
+  landingPage String?
+  logoId      String?
+  logoIconId  String?
+  settings    Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  users            User[]
+  postTypes        PostType[]
+  posts            Post[]
+  media            Media[]
+  taxonomies       Taxonomy[]
+  terms            Term[]
+  pages            Page[]
+  channels         Channel[]
+  operations       Operation[]
+  widgets          Widget[]
+  themes           Theme[]
+  links            Link[]
+  automationRules  AutomationRule[]
+  notificationTopics NotificationTopic[]
+  glossary         Glossary[]
+  settings_entries Setting[]
+
+  @@map("subscriptions")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+  AUTHOR
+  VIEWER
+}
+
+model User {
+  id             String   @id @default(uuid())
+  firstName      String
+  lastName       String
+  email          String
+  passwordHash   String
+  role           UserRole @default(VIEWER)
+  language       String?  @default("en")
+  avatarId       String?
+  isActive       Boolean  @default(true)
+  subscriptionId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  createdPosts     Post[]       @relation("PostCreator")
+  createdPages     Page[]       @relation("PageCreator")
+  uploadedMedia    Media[]      @relation("MediaUploader")
+  createdOperations Operation[] @relation("OperationCreator")
+  pageViews        PageView[]
+
+  @@unique([email, subscriptionId])
+  @@index([email])
+  @@index([subscriptionId])
+  @@map("users")
+}
+
+// ============================================================================
+// POST TYPES & POSTS (EAV Pattern)
+// ============================================================================
+
+model PostType {
+  id             String  @id @default(uuid())
+  name           String
+  slug           String
+  description    String?
+  icon           String?
+  fields         Json    // Array of field definitions (key, label, type, validation, etc.)
+  supportedMedia String[] // Array of supported media types
+  isActive       Boolean @default(true)
+  subscriptionId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  posts                Post[]
+  taxonomies           PostTypeTaxonomy[]
+  sourceRelations      PostTypeRelation[] @relation("SourcePostType")
+  targetRelations      PostTypeRelation[] @relation("TargetPostType")
+
+  @@unique([slug, subscriptionId])
+  @@index([subscriptionId])
+  @@index([slug])
+  @@map("post_types")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+  ARCHIVED
+  TRASH
+}
+
+model Post {
+  id             String      @id @default(uuid())
+  postTypeId     String
+  title          String
+  slug           String
+  content        String?     @db.Text
+  excerpt        String?     @db.Text
+  status         PostStatus  @default(DRAFT)
+  seoTitle       String?
+  seoDescription String?     @db.Text
+  seoKeywords    String[]
+  ogImage        String?
+  publishedAt    DateTime?
+  scheduledFor   DateTime?
+  createdById    String
+  subscriptionId String
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  postType     PostType     @relation(fields: [postTypeId], references: [id], onDelete: Cascade)
+  createdBy    User         @relation("PostCreator", fields: [createdById], references: [id])
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  meta            PostMeta[]
+  media           PostMedia[]
+  terms           PostTerm[]
+  sourceRelations PostRelation[] @relation("SourcePost")
+  targetRelations PostRelation[] @relation("TargetPost")
+  operations      Operation[]
+  publishedPosts  PublishedPost[]
+
+  @@unique([slug, postTypeId, subscriptionId])
+  @@index([postTypeId])
+  @@index([status])
+  @@index([publishedAt])
+  @@index([subscriptionId])
+  @@index([createdById])
+  @@map("posts")
+}
+
+model PostMeta {
+  id        String   @id @default(uuid())
+  postId    String
+  key       String
+  value     String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, key])
+  @@index([postId])
+  @@index([key])
+  @@map("post_meta")
+}
+
+// ============================================================================
+// MEDIA
+// ============================================================================
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+  OTHER
+}
+
+model Media {
+  id             String    @id @default(uuid())
+  filename       String
+  originalName   String
+  mimeType       String
+  type           MediaType
+  size           BigInt
+  width          Int?
+  height         Int?
+  duration       Int?      // seconds
+  path           String
+  cdnUrl         String?
+  thumbnailUrl   String?
+  alt            String?
+  caption        String?   @db.Text
+  description    String?   @db.Text
+  tags           String[]
+  hash           String?
+  storage        String    @default("local") // local, s3, cloudinary, etc.
+  isExternal     Boolean   @default(false)
+  externalUrl    String?
+  metadata       Json?
+  uploadedById   String
+  subscriptionId String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  uploadedBy   User         @relation("MediaUploader", fields: [uploadedById], references: [id])
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  postMedia  PostMedia[]
+  operations Operation[]
+
+  @@index([type])
+  @@index([subscriptionId])
+  @@index([uploadedById])
+  @@map("media")
+}
+
+enum MediaRelationType {
+  FEATURED
+  GALLERY
+  THUMBNAIL
+  ATTACHMENT
+  INLINE
+}
+
+model PostMedia {
+  id           String            @id @default(uuid())
+  postId       String
+  mediaId      String
+  relationType MediaRelationType @default(ATTACHMENT)
+  order        Int               @default(0)
+  caption      String?           @db.Text
+  createdAt    DateTime          @default(now())
+
+  post  Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
+  media Media @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, mediaId, relationType])
+  @@index([postId])
+  @@index([mediaId])
+  @@map("post_media")
+}
+
+// ============================================================================
+// TAXONOMIES & TERMS
+// ============================================================================
+
+model Taxonomy {
+  id                String   @id @default(uuid())
+  name              String
+  slug              String
+  description       String?  @db.Text
+  isHierarchical    Boolean  @default(false)
+  allowAutoAdd      Boolean  @default(false)
+  isMain            Boolean  @default(false)
+  excludeFromSearch Boolean  @default(false)
+  weight            Int?     @default(0)
+  subscriptionId    String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  terms     Term[]
+  postTypes PostTypeTaxonomy[]
+
+  @@unique([slug, subscriptionId])
+  @@index([subscriptionId])
+  @@map("taxonomies")
+}
+
+model Term {
+  id             String   @id @default(uuid())
+  taxonomyId     String
+  name           String
+  slug           String
+  description    String?  @db.Text
+  parentId       String?
+  count          Int      @default(0)
+  metadata       Json?
+  subscriptionId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  taxonomy     Taxonomy     @relation(fields: [taxonomyId], references: [id], onDelete: Cascade)
+  parent       Term?        @relation("TermHierarchy", fields: [parentId], references: [id])
+  children     Term[]       @relation("TermHierarchy")
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  posts PostTerm[]
+
+  @@unique([slug, taxonomyId])
+  @@index([taxonomyId])
+  @@index([parentId])
+  @@index([subscriptionId])
+  @@map("terms")
+}
+
+model PostTerm {
+  postId    String
+  termId    String
+  order     Int     @default(0)
+  isMain    Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  term Term @relation(fields: [termId], references: [id], onDelete: Cascade)
+
+  @@id([postId, termId])
+  @@index([postId])
+  @@index([termId])
+  @@map("post_terms")
+}
+
+model PostTypeTaxonomy {
+  id         String   @id @default(uuid())
+  postTypeId String
+  taxonomyId String
+  required   Boolean  @default(false)
+  multiple   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  postType PostType @relation(fields: [postTypeId], references: [id], onDelete: Cascade)
+  taxonomy Taxonomy @relation(fields: [taxonomyId], references: [id], onDelete: Cascade)
+
+  @@unique([postTypeId, taxonomyId])
+  @@index([postTypeId])
+  @@index([taxonomyId])
+  @@map("post_type_taxonomies")
+}
+
+// ============================================================================
+// POST RELATIONS (Dynamic relationships between posts)
+// ============================================================================
+
+enum RelationType {
+  ONE_TO_ONE
+  ONE_TO_MANY
+  MANY_TO_MANY
+}
+
+model PostTypeRelation {
+  id               String       @id @default(uuid())
+  sourcePostTypeId String
+  targetPostTypeId String
+  name             String
+  relationType     RelationType
+  required         Boolean      @default(false)
+  multiple         Boolean      @default(false)
+  createdAt        DateTime     @default(now())
+
+  sourcePostType PostType @relation("SourcePostType", fields: [sourcePostTypeId], references: [id], onDelete: Cascade)
+  targetPostType PostType @relation("TargetPostType", fields: [targetPostTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([sourcePostTypeId, targetPostTypeId, name])
+  @@index([sourcePostTypeId])
+  @@index([targetPostTypeId])
+  @@map("post_type_relations")
+}
+
+model PostRelation {
+  id           String   @id @default(uuid())
+  sourcePostId String
+  targetPostId String
+  relationType String
+  order        Int?     @default(0)
+  metadata     Json?
+  createdAt    DateTime @default(now())
+
+  sourcePost Post @relation("SourcePost", fields: [sourcePostId], references: [id], onDelete: Cascade)
+  targetPost Post @relation("TargetPost", fields: [targetPostId], references: [id], onDelete: Cascade)
+
+  @@unique([sourcePostId, targetPostId, relationType])
+  @@index([sourcePostId])
+  @@index([targetPostId])
+  @@map("post_relations")
+}
+
+// ============================================================================
+// PAGES & TEMPLATES
+// ============================================================================
+
+enum PageStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Page {
+  id             String     @id @default(uuid())
+  title          String
+  slug           String
+  status         PageStatus @default(DRAFT)
+  layout         Json       // PageLayout structure
+  theme          Json?      // Theme overrides
+  seoTitle       String?
+  seoDescription String?    @db.Text
+  seoKeywords    String[]
+  ogImage        String?
+  templateId     String?
+  createdById    String
+  subscriptionId String
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  template     ThemeTemplate? @relation(fields: [templateId], references: [id])
+  createdBy    User           @relation("PageCreator", fields: [createdById], references: [id])
+  subscription Subscription   @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  views PageView[]
+
+  @@unique([slug, subscriptionId])
+  @@index([status])
+  @@index([subscriptionId])
+  @@index([createdById])
+  @@map("pages")
+}
+
+model Theme {
+  id             String      @id @default(uuid())
+  name           String
+  slug           String
+  description    String?     @db.Text
+  version        String
+  author         String?
+  thumbnail      String?
+  status         ThemeStatus @default(DRAFT)
+  settings       Json        // ThemeSettings structure
+  subscriptionId String
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  templates ThemeTemplate[]
+
+  @@unique([slug, subscriptionId])
+  @@index([subscriptionId])
+  @@map("themes")
+}
+
+enum ThemeStatus {
+  ACTIVE
+  INACTIVE
+  DRAFT
+}
+
+model ThemeTemplate {
+  id          String   @id @default(uuid())
+  themeId     String
+  name        String
+  slug        String
+  type        String   // page, post, archive, search, etc.
+  description String?  @db.Text
+  widgets     Json     // Array of TemplateWidget
+  settings    Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  theme Theme @relation(fields: [themeId], references: [id], onDelete: Cascade)
+
+  // Relations
+  pages Page[]
+
+  @@unique([themeId, slug])
+  @@index([themeId])
+  @@map("theme_templates")
+}
+
+// ============================================================================
+// WIDGETS
+// ============================================================================
+
+enum WidgetStatus {
+  ACTIVE
+  INACTIVE
+  DRAFT
+}
+
+enum WidgetPlatform {
+  WEB
+  MOBILE
+  AMP
+  ALL
+}
+
+model Widget {
+  id             String         @id @default(uuid())
+  name           String
+  slug           String
+  description    String?        @db.Text
+  status         WidgetStatus   @default(DRAFT)
+  dataSource     Json           // WidgetDataSourceConfig
+  viewOptions    Json           // WidgetViewOptions
+  platform       WidgetPlatform @default(ALL)
+  target         String?
+  structure      Json           // WidgetStructure
+  cacheDuration  Int?           // seconds
+  subscriptionId String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@unique([slug, subscriptionId])
+  @@index([subscriptionId])
+  @@index([status])
+  @@map("widgets")
+}
+
+// ============================================================================
+// LINKS & URL ROUTING
+// ============================================================================
+
+model Link {
+  id              String   @id @default(uuid())
+  publicLink      String
+  shortlink       String?
+  resourceId      String
+  resourceType    String   // post, term, page, posttype
+  redirectTo      String?
+  ampLink         String?
+  canonical       String?
+  cachingDuration Int?     // seconds
+  domains         String[]
+  subscriptionId  String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@unique([publicLink, subscriptionId])
+  @@index([resourceId, resourceType])
+  @@index([subscriptionId])
+  @@map("links")
+}
+
+// ============================================================================
+// PAGE VIEWS & ANALYTICS
+// ============================================================================
+
+model PageView {
+  id         String   @id @default(uuid())
+  entityType String   // page, post, term
+  entityId   String
+  entitySlug String
+  userId     String?
+  sessionId  String
+  ip         String
+  userAgent  String
+  referrer   String?
+  country    String?
+  duration   Int?     // seconds
+  viewedAt   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+  page Page? @relation(fields: [entityId], references: [id])
+
+  @@index([entityId, entityType])
+  @@index([sessionId])
+  @@index([viewedAt])
+  @@map("page_views")
+}
+
+// ============================================================================
+// OPERATIONS (Async Tasks)
+// ============================================================================
+
+enum OperationType {
+  VIDEO_UPLOAD
+  VIDEO_TRANSCODE
+  IMAGE_PROCESS
+  SOCIAL_PUBLISH
+  NOTIFICATION_SEND
+  CONTENT_INDEX
+  CACHE_WARM
+  EXPORT_DATA
+  IMPORT_DATA
+}
+
+enum OperationStatus {
+  PENDING
+  QUEUED
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+  RETRYING
+}
+
+enum OperationPriority {
+  LOW
+  NORMAL
+  HIGH
+  CRITICAL
+}
+
+model Operation {
+  id                  String            @id @default(uuid())
+  type                OperationType
+  status              OperationStatus   @default(PENDING)
+  priority            OperationPriority @default(NORMAL)
+  resourceId          String?
+  resourceType        String?
+  progress            Int               @default(0) // 0-100
+  currentState        String?
+  parameters          Json?
+  result              Json?
+  error               Json?             // OperationError structure
+  logs                Json[]            // Array of OperationLog
+  retryCount          Int               @default(0)
+  maxRetries          Int               @default(3)
+  startedAt           DateTime?
+  completedAt         DateTime?
+  estimatedCompletion DateTime?
+  subscriptionId      String
+  createdById         String
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  post         Post?        @relation(fields: [resourceId], references: [id], map: "operations_post_fkey")
+  media        Media?       @relation(fields: [resourceId], references: [id], map: "operations_media_fkey")
+  createdBy    User         @relation("OperationCreator", fields: [createdById], references: [id])
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@index([type])
+  @@index([status])
+  @@index([priority])
+  @@index([resourceId, resourceType])
+  @@index([subscriptionId])
+  @@index([createdById])
+  @@map("operations")
+}
+
+// ============================================================================
+// SOCIAL MEDIA & CHANNELS
+// ============================================================================
+
+enum SocialPlatform {
+  FACEBOOK
+  TWITTER
+  INSTAGRAM
+  YOUTUBE
+  TELEGRAM
+  LINKEDIN
+}
+
+enum ChannelStatus {
+  ACTIVE
+  INACTIVE
+  EXPIRED
+  ERROR
+}
+
+model Channel {
+  id                String        @id @default(uuid())
+  name              String
+  platform          SocialPlatform
+  platformAccountId String
+  accountHandle     String
+  credentials       Json          // Encrypted credentials
+  status            ChannelStatus @default(ACTIVE)
+  metadata          Json?
+  groupName         String?
+  lastSyncAt        DateTime?
+  subscriptionId    String
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Relations
+  publishedPosts PublishedPost[]
+
+  @@unique([platform, platformAccountId, subscriptionId])
+  @@index([subscriptionId])
+  @@index([status])
+  @@map("channels")
+}
+
+enum PublishStatus {
+  PENDING
+  PROCESSING
+  PUBLISHED
+  FAILED
+  CANCELLED
+}
+
+model PublishedPost {
+  id              String        @id @default(uuid())
+  contentId       String
+  channelId       String
+  platformPostId  String
+  contentSnapshot Json
+  publishedAt     DateTime
+  status          PublishStatus @default(PUBLISHED)
+  metrics         Json?         // SocialMetrics
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  post    Post    @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  channel Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  @@unique([contentId, channelId])
+  @@index([contentId])
+  @@index([channelId])
+  @@index([status])
+  @@map("published_posts")
+}
+
+// ============================================================================
+// AUTOMATION
+// ============================================================================
+
+model AutomationRule {
+  id             String   @id @default(uuid())
+  name           String
+  description    String?  @db.Text
+  isActive       Boolean  @default(true)
+  triggers       Json[]   // Array of AutomationTrigger
+  conditions     Json[]   // Array of AutomationCondition
+  actions        Json[]   // Array of AutomationAction
+  schedule       Json?    // CronSchedule
+  subscriptionId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@index([subscriptionId])
+  @@index([isActive])
+  @@map("automation_rules")
+}
+
+// ============================================================================
+// NOTIFICATIONS
+// ============================================================================
+
+model NotificationTopic {
+  id              String   @id @default(uuid())
+  name            String
+  slug            String
+  description     String?  @db.Text
+  subscriberCount Int      @default(0)
+  conditions      Json?
+  template        Json?    // NotificationTemplate
+  subscriptionId  String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@unique([slug, subscriptionId])
+  @@index([subscriptionId])
+  @@map("notification_topics")
+}
+
+// ============================================================================
+// MULTI-LANGUAGE
+// ============================================================================
+
+model Glossary {
+  id             String   @id @default(uuid())
+  resourceId     String
+  resourceType   String   // post, term, menu, widget, etc.
+  field          String
+  language       String
+  value          String   @db.Text
+  subscriptionId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@unique([resourceId, resourceType, field, language])
+  @@index([resourceId, resourceType])
+  @@index([language])
+  @@index([subscriptionId])
+  @@map("glossary")
+}
+
+// ============================================================================
+// SETTINGS
+// ============================================================================
+
+model Setting {
+  id             String   @id @default(uuid())
+  key            String
+  value          Json
+  category       String?
+  subscriptionId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@unique([key, subscriptionId])
+  @@index([category])
+  @@index([subscriptionId])
+  @@map("settings")
+}
+

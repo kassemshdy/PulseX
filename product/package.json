@@ -1,0 +1,38 @@
+{
+  "name": "@cms/root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise-grade CMS monorepo with TypeScript and Node.js",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:admin": "turbo run dev --filter=@cms/admin --filter=@cms/admin-api",
+    "dev:front": "turbo run dev --filter=@cms/front --filter=@cms/front-api",
+    "dev:all": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "db:generate": "pnpm --filter @cms/database db:generate",
+    "db:push": "pnpm --filter @cms/database db:push",
+    "db:migrate": "pnpm --filter @cms/database db:migrate",
+    "db:studio": "pnpm --filter @cms/database db:studio",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "prettier": "^3.2.4",
+    "turbo": "^1.12.4",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.1"
+}
+
